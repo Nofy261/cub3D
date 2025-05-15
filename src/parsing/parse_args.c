@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:51:22 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/14 11:26:17 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:22:52 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "cub3d.h"
 
+// on verifie si le fichier n est pas vide
+// on verifie si ce n est pas un dossier
+static void open_file(char **argv)
+{
+	int fd;
 
-static void pars_args(int argc, char **argv)
+	fd = open(argv[1], O_DIRECTORY);
+	if (fd > 0)
+	{
+		close(fd);
+		ft_putstr_fd("Error: Is a directory\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0 || fd > 1023)
+	{
+		ft_putstr_fd("Error: Failed to open the file\n", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void parse_args(int argc, char **argv)
 {
 	int len;
 	
@@ -28,16 +48,5 @@ static void pars_args(int argc, char **argv)
 		ft_putstr_fd("Error: file extension is invalid\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	//else
-		//fonction qui ouvre et lit le fichier
-}
-
-// fonction qui ouvre et lit le fichier
-// on ouvre
-// on lit
-void open_read_file(char **argv)
-{
-	
-
-	
+	open_file(argv);
 }

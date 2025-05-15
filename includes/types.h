@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 10:00:47 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/14 10:01:11 by nolecler         ###   ########.fr       */
+/*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
+/*   Updated: 2025/05/15 11:54:56 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef TYPES_H
+# define TYPES_H
 
-void ft_putstr_fd(char *str, int fd)
-{
-	int	i;
+# include "cub3d.h"
 
-	i = 0;
-	while (str[i])
-	{
-		write (fd, &str[i], 1);
-		i++;
-	}
-}
+// mettre les structures ici
+
+
+
+
+
+
+
+
+
+
+
+
+#endif

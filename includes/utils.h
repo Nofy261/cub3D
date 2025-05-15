@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/14 11:10:57 by nolecler         ###   ########.fr       */
+/*   Created: 2025/05/15 12:02:00 by nolecler          #+#    #+#             */
+/*   Updated: 2025/05/15 12:13:51 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#ifndef UTILS_H
+# define UTILS_H
+
+# include "cub3d.h"
+
+
+
+//UTILS.C
+void ft_putstr_fd(char *str, int fd);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int	ft_strlen(const char *s);
 
 
 
 
-int main(int argc, char **argv)
-{
-	pars_args(argc, argv);
 
-	return (0);
-}
+
+
+
+
+
+
+
+
+
+#endif
