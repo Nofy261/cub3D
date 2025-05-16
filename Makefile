@@ -6,7 +6,7 @@
 #    By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 08:55:30 by nolecler          #+#    #+#              #
-#    Updated: 2025/05/15 12:11:51 by nolecler         ###   ########.fr        #
+#    Updated: 2025/05/16 15:54:34 by nolecler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -g
 
 SRC_PARSING = $(addprefix parsing/, parse_args.c parse_file.c)
 SRC_UTILS = $(addprefix utils/, utils.c)
-SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS))
-GET_NEXT_LINE = $(addprefix ../get_next_line/, get_next_line.c get_next_line_utils.c)#le .h a rajouter
-INCLUDES = -Iincludes	
+GET_NEXT_LINE = $(addprefix get_next_line/, get_next_line.c get_next_line_utils.c)#le .h a rajouter
+INCLUDES = -Iincludes -Iget_next_line
+SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS)) $(GET_NEXT_LINE)
 
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -51,7 +51,7 @@ $(NAME) : $(OBJ)
 #	mkdir -p $(dir $@)
 #	$(CC) $(CFLAGS) $(MLXFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_DIR)/%.o: ../get_next_line/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: get_next_line/%.c | $(OBJ_DIR)
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 

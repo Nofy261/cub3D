@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:51:22 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/15 12:22:52 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:12:18 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // on verifie si le fichier n est pas vide
 // on verifie si ce n est pas un dossier
-static void open_file(char **argv)
+static int open_file(char **argv)
 {
 	int fd;
 
@@ -31,11 +31,14 @@ static void open_file(char **argv)
 		ft_putstr_fd("Error: Failed to open the file\n", 2);
 		exit(EXIT_FAILURE);
 	}
+	return (fd);
 }
 
 void parse_args(int argc, char **argv)
 {
 	int len;
+	int fd;
+	char **file_content;
 	
 	len = ft_strlen(argv[1]);
 	if (argc != 2)
@@ -48,5 +51,7 @@ void parse_args(int argc, char **argv)
 		ft_putstr_fd("Error: file extension is invalid\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	open_file(argv);
+	fd = open_file(argv);
+	file_content = get_file_content(fd);
+	close (fd);
 }

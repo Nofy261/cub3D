@@ -6,14 +6,15 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 11:58:09 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/15 10:44:43 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:58:18 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "../cub3d.h"
+//#include "get_next_line.h"
+//#include "../cub3d.h"
+#include "cub3d.h"
 
-char	*ft_strdup(char *s)
+char	*ft_strdup(const char *s)
 {
 	int		i;
 	char	*dest;
@@ -31,7 +32,7 @@ char	*ft_strdup(char *s)
 	return (dest);
 }
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 

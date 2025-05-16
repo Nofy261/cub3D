@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:00:47 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/15 12:13:40 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:34:44 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,37 @@ int 	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		i;
+	char	*dest;
+
+	i = 0;
+	dest = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!dest)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+void free_array(char **array)
+{
+	int i;
+
+	i = 0;
+	if (!array)
+		return ;
+	while(array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }

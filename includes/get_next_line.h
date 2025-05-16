@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 11:59:43 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/15 12:14:50 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:35:20 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strdup(char *s);
+//char	*ft_strdup(char *s);
 char	*ft_substr(char *s, int start, int len);
 char	*ft_strjoinfree(char *stash, char *buffer);
 int		ft_strchr(char *s, int c);
