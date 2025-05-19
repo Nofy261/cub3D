@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:51:22 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/19 10:32:32 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:35:26 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 // on verifie si le fichier n est pas vide
 // on verifie si ce n est pas un dossier
-int open_file(char **argv) // a remettre en static 
+//int open_file(char **argv) // test
+static int open_file(char **argv)
 {
 	int fd;
 
@@ -34,7 +35,7 @@ int open_file(char **argv) // a remettre en static
 	return (fd);
 }
 
-void parse_args(int argc, char **argv)
+void parse_args_get_file(int argc, char **argv)
 {
 	int len;
 	int fd;

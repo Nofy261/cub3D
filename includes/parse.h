@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:46:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/19 10:33:04 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:35:54 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "cub3d.h"
 
 // PARSE_ARGS.C
-void parse_args(int argc, char **argv);
-int open_file(char **argv); // test a enlever 
+void parse_args_get_file(int argc, char **argv);
+
 
 
 
