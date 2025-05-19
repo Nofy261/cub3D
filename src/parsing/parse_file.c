@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:51:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/16 15:27:55 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:07:29 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char **add_line_to_tab(char **old_tab, int size_old_tab)
 	char **new_tab;
 	int i;
 	
-	new_tab = malloc(sizeof(char *) * (size_old_tab + 2)); // +1 ? 
+	new_tab = malloc(sizeof(char *) * (size_old_tab + 2)); // new_tab a free 1 erreur valgrind
 	if (!new_tab)
 		return (NULL);
 	i = 0;
@@ -41,10 +41,11 @@ static char **add_line_to_tab(char **old_tab, int size_old_tab)
 		i++;
 	}
 	new_tab[i] = NULL;
-	new_tab[i + 1] = NULL; // a enlever si on met juste +1 dans le malloc
+	new_tab[i + 1] = NULL;
 	free_array(old_tab);
 	return (new_tab);
 }
+
 
 
 char **get_file_content(int fd)
