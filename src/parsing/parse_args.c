@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:51:22 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/19 11:35:26 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/20 09:29:31 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void parse_args_get_file(int argc, char **argv)
 		ft_putstr_fd("Error: file extension is invalid\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	fd = open_file(argv);
+	fd = open_file(argv); // a close !!!
 	file_content = get_file_content(fd);
 	close (fd);
 }

@@ -6,7 +6,7 @@
 #    By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 08:55:30 by nolecler          #+#    #+#              #
-#    Updated: 2025/05/16 15:54:34 by nolecler         ###   ########.fr        #
+#    Updated: 2025/05/20 10:19:32 by nolecler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,46 +14,35 @@
 NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -g
-# MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 
-SRC_PARSING = $(addprefix parsing/, parse_args.c parse_file.c)
-SRC_UTILS = $(addprefix utils/, utils.c)
+SRC_INIT = $(addprefix init/, init.c)
+SRC_PARSING = $(addprefix parsing/, parse_args.c get_file.c parse_file.c)
+SRC_UTILS = $(addprefix utils/, utils_0.c utils_1.c utils_2.c)
 GET_NEXT_LINE = $(addprefix get_next_line/, get_next_line.c get_next_line_utils.c)#le .h a rajouter
 INCLUDES = -Iincludes -Iget_next_line
-SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS)) $(GET_NEXT_LINE)
+SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS) $(SRC_INIT)) $(GET_NEXT_LINE)
 
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 
-#============ Colors ========================#
 
-white='\033[1;37m'
-dark_green='\033[0;32m'
-
-#================ UTILS PART ================#
+violet='\033[1;35m'
 
 RM = rm -f
 
-#all: mlx_build $(NAME)
-all: $(NAME)
-
-#$(NAME) : $(OBJ)
-#	@$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME) 
-#	@echo $(dark_green)"Executable is ready"
+all: mlx_build $(NAME)
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) 
-	@echo $(dark_green)"Executable is ready"
+	@$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME) 
+	@echo $(violet)"Executable is ready"
 
-#$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-#	mkdir -p $(dir $@)
-#	$(CC) $(CFLAGS) $(MLXFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_DIR)/%.o: get_next_line/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: get_next_line%.c | $(OBJ_DIR)
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLXFLAGS) $(INCLUDES) -c $< -o $@
 
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
@@ -63,9 +52,14 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# mlx_build:
-# 	@cd MLX42 && cmake -B build
-# 	@cd MLX42 && cmake --build build -j4
+#mlx_build:
+#	@cd MLX42 && cmake -B build
+#	@cd MLX42 && cmake --build build -j4
+
+mlx_build:
+	@cd MLX42 && cmake -B build > /dev/null 2>&1
+	@cd MLX42 && cmake --build build -j4
+
 
 clean: 
 	@$(RM) $(OBJ)

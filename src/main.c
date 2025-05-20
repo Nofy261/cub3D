@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/19 11:35:13 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:28:27 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 
 int main(int argc, char **argv)
 {
+	t_data data;
 	
 	parse_args_get_file(argc, argv);
+	allocate(&data);
+	init(&data);
+	// parser le fichier 
 	
 	
+
+
+	free(&data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/19 16:02:58 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/20 07:58:44 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d.h"
 
-// mettre les structures ici
+
 typedef struct s_texture
 {
     mlx_texture_t *north_texture;
@@ -30,7 +30,7 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-    char    **file_content;
+    char    **file_content;// recuperer avec la fonction get_file_content
 
     
 }   t_map;

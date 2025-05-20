@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 11:46:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/20 08:01:58 by nolecler         ###   ########.fr       */
+/*   Created: 2025/05/20 08:20:42 by nolecler          #+#    #+#             */
+/*   Updated: 2025/05/20 08:25:23 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
-
-# include "cub3d.h"
-
-// PARSE_ARGS.C
-void parse_args_get_file(int argc, char **argv);
+#include "cub3d.h"
 
 
 
-
-// GET_FILE.C
-char **get_file_content(int fd);
-
-
-
-
-
-
-
-
-
-
-
-#endif
