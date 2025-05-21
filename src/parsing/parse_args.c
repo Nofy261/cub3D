@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:51:22 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/20 09:29:31 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:17:38 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static int open_file(char **argv)
 	return (fd);
 }
 
-void parse_args_get_file(int argc, char **argv)
+
+int parse_args_open_file(int argc, char **argv)
 {
 	int len;
 	int fd;
-	char **file_content;
 	
 	len = ft_strlen(argv[1]);
 	if (argc != 2)
@@ -53,7 +53,6 @@ void parse_args_get_file(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	fd = open_file(argv); // a close !!!
-	file_content = get_file_content(fd);
-	close (fd);
+	return (fd);
 }
 

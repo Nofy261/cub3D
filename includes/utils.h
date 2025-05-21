@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:02:00 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/20 08:28:29 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:47:29 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void free_array(char **array);
 char	**ft_split(char const *s, char c);
 
 // UTILS_2.c
+void free_data(t_data *data);
+
 
 
 

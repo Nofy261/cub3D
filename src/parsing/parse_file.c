@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/20 08:31:35 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:23:59 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // ou data->texture->north_texture = mlx_load_png("tab[1]");
 
 
-void load_texture(char *line, mlx_texture_t **texture)
+static void load_texture(char *line, mlx_texture_t **texture)
 {
     char **file;// le fichier
 	

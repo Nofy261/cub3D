@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/20 11:28:27 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:19:20 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 int main(int argc, char **argv)
 {
 	t_data data;
+	int fd;
 	
-	parse_args_get_file(argc, argv);
+	fd = parse_args_open_file(argc, argv); // fd open ici a close si erreur de malloc
 	allocate(&data);
 	init(&data);
-	// parser le fichier 
-	
+	data.map->file_content = get_file_content(fd);
+	close(fd);// 
+	parsing_file_path_textures(&data);
 	
 
 
-	free(&data);
+	free_data(&data);
 	return (0);
 }
 

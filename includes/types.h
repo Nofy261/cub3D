@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/20 07:58:44 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:32:10 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-    char    **file_content;// recuperer avec la fonction get_file_content
-
+    char    **file_content;// recuperer avec la fonction get_file_content?
+    //char **map;
+    //int width;
+    //int height;
     
 }   t_map;
 
