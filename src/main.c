@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/21 15:19:20 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:28:08 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int main(int argc, char **argv)
 	data.map->file_content = get_file_content(fd);
 	close(fd);// 
 	parsing_file_path_textures(&data);
+
+
 	
-
-
 	free_data(&data);
 	return (0);
 }

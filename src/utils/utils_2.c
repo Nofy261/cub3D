@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:20:42 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/21 13:46:17 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:55:02 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ void free_data(t_data *data)
     }
     if (data->texture)
         free(data->texture);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
 
 

@@ -6,21 +6,22 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/21 15:23:59 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:18:50 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// A faire : verifier s'il y a tous les elements
+// verifier si les elements ne reviennent pas deux fois
 
-// verifier si c est bien NO SO WE EA
-// si c est le cas je split la ligne " NO ./texture/path_to_north"
-// j aurais : tab[0] = "NO", et tab[1] = "./texture/path_to_north"
-// tab[1] est le chemin et je le recupere 
-// ensuite j envoie ce path a mlx_load_png("./texture/path_to_north");
-// ensuite je le donne a ma structure de texture pour la stocker
-// data->texture->north_texture = mlx_load_png("./texture/path_to_north")
-// ou data->texture->north_texture = mlx_load_png("tab[1]");
+
+char	*skip_whitespaces(char *str)
+{  
+    while (str && is_whitespace(*str))
+        str++;   
+    return (str);
+}
 
 
 static void load_texture(char *line, mlx_texture_t **texture)
@@ -52,6 +53,7 @@ void parsing_file_path_textures(t_data *data)
     while (data->map->file_content[i]) 
 	{
         line = data->map->file_content[i];
+        line = skip_whitespaces(line);
         if (ft_strncmp(line, "NO ", 3) == 0)
             load_texture(line, &data->texture->north_texture);
         else if (ft_strncmp(line, "SO ", 3) == 0)
