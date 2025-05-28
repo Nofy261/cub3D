@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:51:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/20 08:03:55 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:30:50 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char **get_file_content(int fd)
 			free(line);
 			break ;
 		}
-		result[size] = ft_strdup(line);
+		result[size] =  ft_substr(line, 0, ft_strcspn(line, "\n"));
 		if (!result[size])
 		{
 			free(line);

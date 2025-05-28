@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:46:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/23 08:53:26 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:50:45 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 // GET_FILE.C
 char **get_file_content(int fd);
-char	*skip_whitespaces(char *str);
+
 
 // PARSE_ARGS.C
 int parse_args_open_file(int argc, char **argv);
@@ -25,6 +25,7 @@ int parse_args_open_file(int argc, char **argv);
 
 
 // PARSE_COLORS.C
+void parse_file_colors(t_data *data);
 
 
 

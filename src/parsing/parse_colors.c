@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 08:12:57 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/23 12:17:28 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/28 08:41:40 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static int	convert_and_check_rgb(char **colors, int *r, int *g, int *b)
     return (1);
 }
 
-static void set_color(int *dst, int r, int g, int b)
+static void set_color(int *color, int r, int g, int b)
 {
-	dst[0] = r;
-	dst[1] = g;
-	dst[2] = b;
+	color[0] = r;
+	color[1] = g;
+	color[2] = b;
 }
 
 

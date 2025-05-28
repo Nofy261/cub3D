@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:51:22 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/21 15:17:38 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:02:23 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,23 @@ int parse_args_open_file(int argc, char **argv)
 	int len;
 	int fd;
 	
-	len = ft_strlen(argv[1]);
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error: number of argument is invalid\n", 2);
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("number of argument is invalid\n", 2);
 		exit(EXIT_FAILURE);
 	}
+	if (!argv || !argv[0] || !argv[1])
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("NO ARGV\n", 2);// message a modifier
+		exit(EXIT_FAILURE);
+	}
+	len = ft_strlen(argv[1]);
 	if(len < 4 || ft_strncmp(&argv[1][len - 4], ".cub", 4) != 0)
 	{
-		ft_putstr_fd("Error: file extension is invalid\n", 2);
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("file extension is invalid\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	fd = open_file(argv); // a close !!!
