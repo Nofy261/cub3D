@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/28 13:17:18 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/29 11:05:02 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,31 +77,54 @@ static void count_param(t_data *data)
 }
 
 // fonction qui verifie les elements non autorisé dans le fichier
-// A REGLER !! ne marche pas car considere les espaces vide comme erreur
-static void check_unknown_element_in_file(t_data *data)
-{
-    int     i;
-	char    **line;
+// A REGLER !! ne marche pas car considere les lignes vide comme erreur
+// static void check_unknown_element_in_file(t_data *data)
+// {
+//     int     i;
+// 	char    **line;
 	
-	i = 0;
-    line = data->map->file_content;
-    while (data->map->file_content[i]) 
-	{
-        line[i] = skip_whitespaces(line[i]);
-        if (line[i][0] == '\0')
-        {
-            if (ft_strncmp(line[i], "NO ", 3) != 0 && ft_strncmp(line[i], "SO ", 3) != 0 &&
-                ft_strncmp(line[i], "WE ", 3) != 0 && ft_strncmp(line[i], "EA ", 3) != 0 &&
-               ft_strncmp(line[i], "F ", 2) != 0 && ft_strncmp(line[i], "C ", 2) != 0)
-            {
-               ft_putstr_fd("Error\n", 2);
-               ft_putstr_fd("unknown element in file\n", 2);
-              //free tout
-              exit(EXIT_FAILURE);
-            }
-        }
-        i++;
-    }
+// 	i = 0;
+//     line = data->map->file_content;
+//     while (data->map->file_content[i]) 
+// 	{
+//         line[i] = skip_whitespaces(line[i]);
+//         if (line[i][0] == '\0')// a revoir cette ligne qui est censé gerer les lignes vides
+//            i++;   
+//         if (ft_strncmp(line[i], "NO ", 3) != 0 && ft_strncmp(line[i], "SO ", 3) != 0 &&
+//             ft_strncmp(line[i], "WE ", 3) != 0 && ft_strncmp(line[i], "EA ", 3) != 0 &&
+//             ft_strncmp(line[i], "F ", 2) != 0 && ft_strncmp(line[i], "C ", 2) != 0)
+//         {
+//             ft_putstr_fd("Error\n", 2);
+//             ft_putstr_fd("unknown element in file\n", 2);
+//             //free tout
+//             exit(EXIT_FAILURE);
+//         }
+//         i++;
+//     }
+// }
+
+
+
+int is_unknown_element_in_file(char *line)
+{
+    line = skip_whitespaces(line);
+    
+    if (line[0] == '\0')
+        return (1);
+    if (ft_strncmp(line, "NO ", 3) == 0)
+        return (1);
+    if (ft_strncmp(line, "SO ", 3) == 0)
+        return (1);
+    if (ft_strncmp(line, "WE ", 3) == 0)
+        return (1);
+    if (ft_strncmp(line, "EA ", 3) == 0)
+        return (1);
+    if (ft_strncmp(line, "F ", 2) == 0)
+        return (1);
+    if (ft_strncmp(line, "C ", 2) == 0)
+        return (1);
+
+    return (0);
 }
 
 
@@ -115,13 +138,15 @@ void parsing_file_path_textures(t_data *data)
     if (data->counter->count_no != 1 || data->counter->count_so != 1 ||
         data->counter->count_we != 1 || data->counter->count_ea != 1 ||
         data->counter->count_f != 1  || data->counter->count_c != 1)
-        {
-            ft_putstr_fd("Error\n", 2);
-            ft_putstr_fd("element in file invalid\n", 2);
-            //free tout
-            exit(EXIT_FAILURE);
-        }
-    check_unknown_element_in_file(data);
+    {
+        ft_putstr_fd("Error\n", 2);
+        ft_putstr_fd("element in file invalid\n", 2);
+        //free tout
+        exit(EXIT_FAILURE);
+    }
+    //
+
+    
     while (data->map->file_content[i]) 
 	{
         line = data->map->file_content[i];
@@ -150,3 +175,36 @@ void parsing_file_path_textures(t_data *data)
 //         exit (EXIT_FAILURE);
 //     } 
 // }
+
+
+int element_is_valid(t_data *data)
+{
+    if (data->counter->count_no == 1 && data->counter->count_so == 1 &&
+        data->counter->count_we == 1 && data->counter->count_ea == 1 &&
+        data->counter->count_f == 1 && data->counter->count_c == 1)
+        return (1);
+    return (0);
+}
+
+int is_start_of_map(t_data *data, char *line)
+{
+    int i;
+
+    i = 0;
+    if (element_is_valid(data) == 0)
+        return (0);
+    while (line[i])
+    {
+        if (line[i] != '0' && line[i] != '1' && line[i] != 'N' &&
+            line[i] != 'S' && line[i] != 'E' && line[i] != 'W' &&
+            line[i] != ' ')
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+// count_param();
+// checker les elements inconnus : si oui on sort sinon on passe a l etape suivant
+// if is_start_of_map() == 1 --> on passe au parsing de la map
+

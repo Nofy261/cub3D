@@ -1,0 +1,8 @@
+NO ./textures/path_north_texture.png
+SO ./textures/path_south_texture.png
+WE ./textures/path_west_texture.png
+EA ./textures/path_east_texture.png
+
+F 220,100,0
+C 255,255,255
+
