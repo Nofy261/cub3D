@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/30 14:18:44 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:31:01 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	parse_and_load_textures(&data);
 	parse_file_colors(&data);
 	// parse_map();
-
+	
 
 	
 	free_data(&data);

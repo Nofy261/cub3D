@@ -6,7 +6,7 @@
 #    By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 08:55:30 by nolecler          #+#    #+#              #
-#    Updated: 2025/05/23 08:12:38 by nolecler         ###   ########.fr        #
+#    Updated: 2025/05/30 15:10:12 by nolecler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 SRC_INIT = $(addprefix init/, init.c)
 SRC_PARSING = $(addprefix parsing/, parse_args.c get_file.c parse_file.c parse_colors.c)
-SRC_UTILS = $(addprefix utils/, utils_0.c utils_1.c utils_2.c)
+SRC_UTILS = $(addprefix utils/, utils_0.c utils_1.c utils_2.c free.c)
 GET_NEXT_LINE = $(addprefix get_next_line/, get_next_line.c get_next_line_utils.c)#le .h a rajouter
 INCLUDES = -Iincludes -Iget_next_line
 SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS) $(SRC_INIT)) $(GET_NEXT_LINE)

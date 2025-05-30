@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/30 14:24:01 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:22:07 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void load_texture(char *line, mlx_texture_t **texture, t_data *data)
         free_data(data);
         exit(EXIT_FAILURE);
     }
-    // on charge la texture avec le chemin trouvé dans file[1]
     *texture = mlx_load_png(file[1]);
     if (!*texture)
     {
@@ -38,6 +37,7 @@ static void load_texture(char *line, mlx_texture_t **texture, t_data *data)
     free_array(file);
 }
 
+
 static void count_param(t_data *data)
 {   
     int i;
@@ -49,7 +49,7 @@ static void count_param(t_data *data)
     {
         ft_putstr_fd("Error\n", 2);
         ft_putstr_fd("map is empty\n", 2);
-        //free tout ce qui a ete allouer avant
+        free_data(data);
         exit (EXIT_FAILURE);
     }   
     while (data->map->file_content[i])
@@ -111,14 +111,14 @@ void parse_and_load_textures(t_data *data)
     {
         ft_putstr_fd("Error\n", 2);
         ft_putstr_fd("element in file invalid\n", 2);
-        //free tout
+        free_data(data);
         exit(EXIT_FAILURE);
     }
     if (check_invalid_element_and_map_start(data) == 0)
     {
         ft_putstr_fd("Error\n", 2);
         ft_putstr_fd("found unknown element in file\n", 2);
-        //free tout
+        free_data(data);
         exit(EXIT_FAILURE);
     }
     while (i < data->map->map_start_index)

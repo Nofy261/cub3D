@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:00:47 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/23 09:52:21 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:13:12 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
-}
-
-void free_array(char **array)
-{
-	int i;
-
-	i = 0;
-	if (!array)
-		return ;
-	while(array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
 }
 
 int	is_whitespace(char c)
