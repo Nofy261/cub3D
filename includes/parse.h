@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:46:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/28 10:50:45 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/30 14:19:08 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void parse_file_colors(t_data *data);
 
 
 // PARSE_FILE
-void parsing_file_path_textures(t_data *data);
+void parse_and_load_textures(t_data *data);
 
 
 

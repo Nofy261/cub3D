@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:20:42 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/28 11:23:45 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/30 09:18:06 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,17 @@ char	*skip_whitespaces(char *str)
     return (str);
 }
 
+// a faire fonction qui gere le message + exit pour eviter repetition
+// static void exit_error(t_data *data)
+// {
 
+//   if (
+//     {
+//         ft_putstr_fd("Error\n", 2);
+//         ft_putstr_fd("map is empty\n", 2);
+//         //free tout ce qui a ete allouer avant
+//         exit (EXIT_FAILURE);
+//     } 
+// }
 
 

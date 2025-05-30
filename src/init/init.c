@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/28 11:26:22 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:40:28 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void init(t_data *data)
     data->map->file_content = NULL;
     init_floor_ceiling(data->map->ceiling_color);
     init_floor_ceiling(data->map->floor_color);
+    data->map->map_start_index = 0;
 
 }

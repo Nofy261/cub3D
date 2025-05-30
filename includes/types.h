@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/28 11:00:56 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:38:51 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_map
     char    **file_content;// recuperer avec la fonction get_file_content?
     int     floor_color[3];
     int     ceiling_color[3];
-   
+    int     map_start_index;
     
 }   t_map;
 
