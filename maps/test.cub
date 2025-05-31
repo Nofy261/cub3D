@@ -4,7 +4,7 @@ WE ./textures/path_west_texture.png
 EA ./textures/path_east_texture.png
 
 F 220,100,0
-C 255,255,255
+C 255,255,255 
 
 1111111111
 1100000001
