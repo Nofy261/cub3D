@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:20:42 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/30 15:13:47 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:14:08 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,26 @@ char	*skip_whitespaces(char *str)
 }
 
 
+void	exit_error(t_data *data, char *msg)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+	free_data(data);
+	exit(EXIT_FAILURE);
+}
 
-// a faire fonction qui gere le message + exit pour eviter repetition
-// static void exit_error(t_data *data)
-// {
+void	exit_error_with_array(t_data *data, char **array, char *msg)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+	if (array)
+		free_array(array);
+	free_data(data);
+	exit(EXIT_FAILURE);
+}
 
-//   if (
-//     {
-//         ft_putstr_fd("Error\n", 2);
-//         ft_putstr_fd("map is empty\n", 2);
-//         //free tout ce qui a ete allouer avant
-//         exit (EXIT_FAILURE);
-//     } 
-// }
+
 
 

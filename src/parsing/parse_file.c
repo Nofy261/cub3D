@@ -6,11 +6,12 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/30 15:22:07 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:41:57 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 static void load_texture(char *line, mlx_texture_t **texture, t_data *data)
 {
@@ -18,40 +19,22 @@ static void load_texture(char *line, mlx_texture_t **texture, t_data *data)
 	
 	file = ft_split(line, ' '); // on split la premiere ligne
     if (!file || !file[1])
-	{
-        ft_putstr_fd("Error\n", 2);
-        ft_putstr_fd("Invalid texture\n", 2);
-        free_array(file);
-        free_data(data);
-        exit(EXIT_FAILURE);
-    }
+        exit_error_with_array(data, file, "Invalid texture");
     *texture = mlx_load_png(file[1]);
     if (!*texture)
-    {
-        ft_putstr_fd("Error\n", 2);
-        ft_putstr_fd("loading path texture failed\n", 2);
-        free_array(file);
-        free_data(data);
-        exit(EXIT_FAILURE);  
-    }
+        exit_error_with_array(data, file, "loading path texture failed");
     free_array(file);
 }
 
 
-static void count_param(t_data *data)
+static void count_param(t_data *data, char *line)
 {   
     int i;
-    char *line;
-
+    
     i = 0;
     line = data->map->file_content[i];
     if (!data->map->file_content[0])
-    {
-        ft_putstr_fd("Error\n", 2);
-        ft_putstr_fd("map is empty\n", 2);
-        free_data(data);
-        exit (EXIT_FAILURE);
-    }   
+        exit_error(data, "map is empty");  
     while (data->map->file_content[i])
     {
         line = skip_whitespaces(data->map->file_content[i]);
@@ -104,23 +87,13 @@ void parse_and_load_textures(t_data *data)
 	
 	i = 0;
     line = data->map->file_content[i];
-    count_param(data);
+    count_param(data, line);
     if (data->counter->count_no != 1 || data->counter->count_so != 1 ||
         data->counter->count_we != 1 || data->counter->count_ea != 1 ||
         data->counter->count_f != 1  || data->counter->count_c != 1)
-    {
-        ft_putstr_fd("Error\n", 2);
-        ft_putstr_fd("element in file invalid\n", 2);
-        free_data(data);
-        exit(EXIT_FAILURE);
-    }
+        exit_error(data, "element in file invalid");
     if (check_invalid_element_and_map_start(data) == 0)
-    {
-        ft_putstr_fd("Error\n", 2);
-        ft_putstr_fd("found unknown element in file\n", 2);
-        free_data(data);
-        exit(EXIT_FAILURE);
-    }
+        exit_error(data, "found unknown element in file");
     while (i < data->map->map_start_index)
 	{
         line = data->map->file_content[i];

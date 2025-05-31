@@ -6,20 +6,15 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 08:12:57 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/31 12:00:30 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:40:32 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// ne pas avoir d'alphabet dans la couleur ✅
-// gerer les espaces-tab entre les couleurs EX: "255,  89, 22"
-// "2  55,240,6  6" ✅
+//❌ ATTENTION Les espaces dans le path ne sont plus considerer comme erreur a cause d'ajout de condition dans parse_color
+// erreur dans parse_file a gerer quand on met les esapces dans le chemin ❌
 // espaces apres le dernier chiffres a gerer comme pas erreur ❌
-// ignorer le + et le - ✅
-// espace apres les chiffres c est gerer mais espaces avant les chiffres non gerer✅
-// verifier si les couleurs commence ou termine par une virgule : erreur ✅
-
 
 static int	is_valid_color(char *rgb, t_data *data)
 {
@@ -35,12 +30,7 @@ static int	is_valid_color(char *rgb, t_data *data)
         if (count_comma > 2 || (is_whitespace(rgb[i]) == 1) || (!ft_isdigit(rgb[i]) && rgb[i] != ',') ||
             (rgb[i] == ',' && is_whitespace(rgb[i - 1]) == 1) ||
             (rgb[i] == ',' && is_whitespace(rgb[i + 1]) == 1))
-        {
-            ft_putstr_fd("Error\n", 2);
-            ft_putstr_fd("invalid color format 1\n", 2);
-            free_data(data);
-            exit(EXIT_FAILURE);
-        }
+            exit_error(data, "invalid color format");
 		i++;
 	}
 	return (1);
@@ -80,13 +70,7 @@ static void parse_color_line(t_data *data, char *rgb, int is_floor)
     is_valid_color(rgb, data);
     colors = ft_split(rgb, ','); // on split "220,100,0"
     if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
-    {
-        ft_putstr_fd("Error\n", 2);
-        ft_putstr_fd("Invalid color format\n", 2);
-        free_array(colors);
-        free_data(data);
-        exit(EXIT_FAILURE);
-    }
+        exit_error_with_array(data, colors, "Invalid color format");
     if (convert_and_check_rgb(colors, &r, &g, &b) == 0)
     {
         free_data(data);

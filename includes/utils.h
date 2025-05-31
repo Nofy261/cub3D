@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:02:00 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/30 15:13:06 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:14:46 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	**ft_split(char const *s, char c);
 int	ft_isdigit(int c);
 int	ft_strcspn(char *line, char *str);
 char	*skip_whitespaces(char *str);
+void	exit_error(t_data *data, char *msg);
+void	exit_error_with_array(t_data *data, char **array, char *msg);
 
 
 // FREE.C
