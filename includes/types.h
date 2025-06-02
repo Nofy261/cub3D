@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/30 13:38:51 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/02 14:51:08 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ typedef struct s_texture
     mlx_texture_t *north_texture;
     mlx_texture_t *south_texture;
     mlx_texture_t *west_texture;
-    mlx_texture_t *east_texture;
-
-
-    
+    mlx_texture_t *east_texture;    
 }   t_texture;
 
 typedef struct s_counter
@@ -44,6 +41,9 @@ typedef struct s_map
     int     floor_color[3];
     int     ceiling_color[3];
     int     map_start_index;
+    char    **map;
+    int     width; // largeur
+    int     height; // hauteur
     
 }   t_map;
 

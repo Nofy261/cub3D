@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/31 13:41:57 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/02 09:14:45 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void count_param(t_data *data, char *line)
     int i;
     
     i = 0;
-    line = data->map->file_content[i];
+    //line = data->map->file_content[i]; // a voir utilité ici
     if (!data->map->file_content[0])
         exit_error(data, "map is empty");  
     while (data->map->file_content[i])
@@ -66,20 +66,20 @@ static int check_invalid_element_and_map_start(t_data *data)
         line = skip_whitespaces(line);
         if (line[0] == '1')
         {
-            data->map->map_start_index = 1;
+            //data->map->map_start_index = 1;
+            data->map->map_start_index = i; // modif 2 juin
             return (1);
         }
-        if (ft_strncmp(line, "NO ", 3) != 0 && ft_strncmp(line, "SO ", 3) != 0 &&
+        if (line[0] != '\0' && ft_strncmp(line, "NO ", 3) != 0 && ft_strncmp(line, "SO ", 3) != 0 &&
             ft_strncmp(line, "WE ", 3) != 0 && ft_strncmp(line, "EA ", 3) != 0 && 
-            ft_strncmp(line, "F ", 2) != 0 && ft_strncmp(line, "C ", 2) != 0 && 
-            line[0] != '\0')
+            ft_strncmp(line, "F ", 2) != 0 && ft_strncmp(line, "C ", 2) != 0)
             return (0);
         i++;
     }
     return (1);
 }
 
-
+// a voir si on met char *line dans prototype donc ajouter char *line dans le main pour gagner des lignes ici
 void parse_and_load_textures(t_data *data)
 {
     int     i;
@@ -94,6 +94,8 @@ void parse_and_load_textures(t_data *data)
         exit_error(data, "element in file invalid");
     if (check_invalid_element_and_map_start(data) == 0)
         exit_error(data, "found unknown element in file");
+    if (data->map->map_start_index == 0)// ajout 2 juin
+        exit_error(data, "Map start index not found");// ajout 2 juin
     while (i < data->map->map_start_index)
 	{
         line = data->map->file_content[i];
@@ -109,3 +111,5 @@ void parse_and_load_textures(t_data *data)
         i++;
     }
 }
+
+
