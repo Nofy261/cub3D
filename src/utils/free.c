@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/30 15:12:50 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/03 15:20:36 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void free_data(t_data *data)
     {
         if (data->map->file_content)
             free_array(data->map->file_content);
+		if (data->map->map)
+            free_array(data->map->map);
         free(data->map);
 		data->map = NULL;
     }

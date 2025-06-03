@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:46:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/02 15:41:34 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/03 11:30:16 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void parse_and_load_textures(t_data *data);
 // PARSE_MAP.C
 char **map_start(t_data *data);
 void parse_map(t_data *data);
+
+
+// MAP.C
+
 
 
 
