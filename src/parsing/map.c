@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:29:40 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/03 15:39:44 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/06 15:38:30 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,56 @@ char **map_start(t_data *data)
     return (map);
 }
 
+void check_player(t_data *data)
+{
+    int i;
+    int j;
+    int count;
+    char **map;
 
+    count = 0;
+    i = 0;
+    map = data->map->map;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' ||
+                map[i][j] == 'W')
+                count++;
+            j++;
+        }
+        i++;
+    }
+    if (count != 1)
+        exit_error_with_array(data, NULL, "Invalid number of player");
+    return;
+}
 
+void player_start_position(t_data *data)
+{
+    int     i;
+    char    **map;
+    int     j;
+    
+    i = 0;
+    map = data->map->map;
+    while (data->map->map[i])
+    {
+        j = 0;
+        while (data->map->map[i][j])
+        {
+            if (data->map->map[i][j] == 'N' || data->map->map[i][j] == 'W' ||
+                data->map->map[i][j] == 'S' || data->map->map[i][j] == 'E')
+            {
+                data->map->player_pos_y = i;
+                data->map->player_pos_x = j;
+                //data->map->player_dir = data->map->map[i][j];
+                return ;
+            }
+            j++;
+        }
+        i++;
+    }
+}

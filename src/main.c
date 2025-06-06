@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/03 15:44:40 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/06 13:31:16 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,3 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-
-// Affichage pour vérif
-	
-	// int i = 0;
-	// while (data.map->map[i])
-	// {
-    // 	printf("%s\n", data.map->map[i]);
-    // 	i++;
-	// }

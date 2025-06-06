@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/03 15:22:58 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:13:17 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ void init(t_data *data)
     data->map->map_start_index = 0;
     data->map->width = 0;
     data->map->height = 0;
+    data->map->player_pos_x = 1;
+    data->map->player_pos_y = 1;
 
 }
+

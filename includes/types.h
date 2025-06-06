@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/02 14:51:08 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/06 14:10:39 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_map
     char    **map;
     int     width; // largeur
     int     height; // hauteur
+    int     player_pos_x;
+    int     player_pos_y;
     
 }   t_map;
 
