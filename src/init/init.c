@@ -6,13 +6,15 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/06 14:13:17 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:44:53 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void allocate(t_data *data) // free a completer
+
+ // free a completer
+void allocate(t_data *data)
 {
     data->map = malloc(sizeof(t_map));
     if (!data->map)
@@ -27,13 +29,19 @@ void allocate(t_data *data) // free a completer
         exit(EXIT_FAILURE);
     }
     data->counter = malloc(sizeof(t_counter));
-     if (!data->counter)
+    if (!data->counter)
     {
+        // free_data(data);
         free(data->texture);
         free(data->map);
         exit(EXIT_FAILURE);
     }
-    
+    data->player = malloc(sizeof(t_player));
+    if (!data->player)
+    {
+        free_data(data);
+        exit(EXIT_FAILURE);  
+    }
 }
 
 
@@ -69,8 +77,9 @@ void init(t_data *data)
     data->map->map_start_index = 0;
     data->map->width = 0;
     data->map->height = 0;
-    data->map->player_pos_x = 1;
-    data->map->player_pos_y = 1;
+    data->player->player_pos_x = 1;
+    data->player->player_pos_y = 1;
+    data->player->angle = 0.0;
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:29:40 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/06 15:38:30 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/09 13:05:17 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void check_player(t_data *data)
     return;
 }
 
+
+// et orientation a rajouter
 void player_start_position(t_data *data)
 {
     int     i;
@@ -129,9 +131,10 @@ void player_start_position(t_data *data)
             if (data->map->map[i][j] == 'N' || data->map->map[i][j] == 'W' ||
                 data->map->map[i][j] == 'S' || data->map->map[i][j] == 'E')
             {
-                data->map->player_pos_y = i;
-                data->map->player_pos_x = j;
+                data->player->player_pos_y = i + 0.5;
+                data->player->player_pos_x = j + 0.5;
                 //data->map->player_dir = data->map->map[i][j];
+                set_player_angle_from_facing(data, data->map->map[i][j]);
                 return ;
             }
             j++;

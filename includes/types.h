@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/06 14:10:39 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:31:57 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 typedef struct s_texture
 {
-    mlx_texture_t *north_texture;
-    mlx_texture_t *south_texture;
-    mlx_texture_t *west_texture;
-    mlx_texture_t *east_texture;    
+    
+    mlx_texture_t   *north_texture;
+    mlx_texture_t   *south_texture;
+    mlx_texture_t   *west_texture;
+    mlx_texture_t   *east_texture;    
 }   t_texture;
 
 typedef struct s_counter
@@ -35,27 +36,37 @@ typedef struct s_counter
     
 }   t_counter;
 
+typedef struct s_player
+{
+    float     player_pos_x;
+    float     player_pos_y;
+    float     angle;
+    
+}   t_player;
+
+
 typedef struct s_map
 {
-    char    **file_content;// recuperer avec la fonction get_file_content?
+    char    **file_content;
     int     floor_color[3];
     int     ceiling_color[3];
     int     map_start_index;
     char    **map;
     int     width; // largeur
     int     height; // hauteur
-    int     player_pos_x;
-    int     player_pos_y;
+    
     
 }   t_map;
 
 
 typedef struct s_data
 {
+    mlx_image_t		    *image;
     mlx_t				*mlx;
     t_map               *map;
     t_texture           *texture;
     t_counter           *counter;
+    t_player            *player;
     
 }   t_data;
 

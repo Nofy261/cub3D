@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/06 13:31:16 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:30:45 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ int main(int argc, char **argv)
 	parse_and_load_textures(&data);
 	parse_file_colors(&data);
 	data.map->map = map_start(&data);
-	
 	parse_map(&data);
+	player_start_position(&data);
+	start_game(&data);
+
+	
 	free_data(&data);
 	//close(fd);
 	return (0);

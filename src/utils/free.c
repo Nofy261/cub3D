@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/03 15:20:36 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/09 12:41:15 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,10 @@ void free_data(t_data *data)
 	{
 		free(data->counter);
 		data->counter = NULL;
+	}
+	if (data->player)
+	{
+		free(data->player);
+		data->player = NULL;
 	}
 }

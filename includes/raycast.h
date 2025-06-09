@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 09:48:47 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/09 13:33:39 by nolecler         ###   ########.fr       */
+/*   Created: 2025/06/09 12:56:20 by nolecler          #+#    #+#             */
+/*   Updated: 2025/06/09 15:16:22 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
+#ifndef RAYCAST_H
+# define RAYCAST_H
 
-# include <math.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
+# include "cub3d.h"
+
+// RAYSTART.C
+void start_game(t_data *data);
 
 
+// RAYCAST.C
 
 
 
-# include "types.h"
-# include "parse.h"
-# include "get_next_line.h"
-# include "utils.h"
-# include "init.h"
-# include "raycast.h"
 
-# define WINDOWS_WIDTH 1040
-# define WINDOWS_HEIGHT 720
+
+// UTILS.C
+void	set_player_angle_from_facing(t_data *data, char facing);
+
+
+
+
+
+
+
+
+
+
 
 
 
