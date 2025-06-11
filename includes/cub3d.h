@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:48:47 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 18:03:19 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:29:21 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 # include <stdio.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+
 # include "mlx.h"
+# include "libft.h"
+# include "get_next_line.h"
 
 # include "types.h"
 # include "parse.h"
-# include "get_next_line.h"
 # include "utils.h"
 # include "init.h"
 # include "raycast.h"

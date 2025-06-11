@@ -6,35 +6,30 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 15:49:59 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:44:10 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 	int		fd;
-	
-	fd = parse_args_open_file(argc, argv); // fd open ici a close si erreur avant
-	allocate(&data);
+
+	fd = parse_args_open_file(argc, argv);
 	init(&data);
 	data.mlx_ptr = mlx_init();
-    if (!data.mlx_ptr)
-		exit_error(&data, "Failed to init MLX before loading textures");
+	if (data.mlx_ptr == NULL)
+		exit_error(&data, "Failed to init MLX");
 	data.map.file_content = get_file_content(fd);
-	//close(fd);// 
+	close(fd);
 	parse_and_load_textures(&data);
 	parse_file_colors(&data);
 	data.map.map = map_start(&data);
 	parse_map(&data);
 	player_start_position(&data);
 	start_game(&data);
-
-	
 	free_data(&data);
-	//close(fd);
 	return (0);
 }
-
