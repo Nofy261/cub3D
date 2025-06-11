@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:02:00 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/31 13:14:46 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:58:25 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void free_array(char **array);
 void free_textures(t_data *data);
 void free_data(t_data *data);
 
+// STRING.C
+int char_in_set(char c, const char *set);
 
 
 

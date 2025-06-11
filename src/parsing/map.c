@@ -6,124 +6,134 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 11:29:40 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 15:10:01 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:17:25 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int is_line_empty(char *line)
+static int	is_line_empty(const char *line)
 {
-	int i = 0;
+	int	i;
 
-	while (line[i])
+	i = 0;
+	while (line[i] != '\0')
 	{
-		if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
+		if (!is_whitespace(line[i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static int find_last_map_line(char **lines, t_data *data)
+static int	find_last_map_line(char **lines, t_data *data)
 {
-	int i = 0;
-	int last_line = -1;
-	int j;
+	int	i;
+	int	last;
+	int	current;
 
-	while (lines[i])
+	i = 0;
+	last = -1;
+	while (lines[i] != NULL)
 	{
 		if (is_line_empty(lines[i]))
 		{
-			j = i + 1;
-			while (lines[j])
+			current = i + 1;
+			while (lines[current] != NULL)
 			{
-				if (!is_line_empty(lines[j]))
+				if (!is_line_empty(lines[current]))
 					exit_error_with_array(data, NULL, "Empty line inside map");
-				j++;
+				current++;
 			}
-			break;
+			break ;
 		}
-		else
-			last_line = i;
+		last = i;
 		i++;
 	}
-	return (last_line);
+	return (last);
 }
 
-char **map_start(t_data *data)
+char	**map_start(t_data *data)
 {
-	int     i = data->map.map_start_index;
-	int     last_valid;
-	int     total_map_line;
-	int     j;
-	char  **map;
+	int		start;
+	int		last;
+	int		size;
+	char	**result;
 
-	last_valid = find_last_map_line(data->map.file_content + i, data);
-	if (last_valid < 0)
+	start = data->map.map_start_index;
+	last = find_last_map_line(data->map.file_content + start, data);
+	if (last < 0)
 		exit_error_with_array(data, NULL, "No valid map lines found");
-
-	total_map_line = last_valid + 1;
-	map = malloc(sizeof(char *) * (total_map_line + 1));
-	if (!map)
-		exit_error_with_array(data, map, "Map allocation failed");
-
-	j = 0;
-	while (j < total_map_line)
+	size = last + 1;
+	result = malloc(sizeof(char *) * (size + 1));
+	if (result == NULL)
+		exit_error_with_array(data, NULL, "Map allocation failed");
+	start = 0;
+	while (start < size)
 	{
-		map[j] = ft_strdup(data->map.file_content[i + j]);
-		if (!map[j])
-		   exit_error_with_array(data, map, "Map copy failed");
-		j++;
+		result[start] = ft_strdup(
+				data->map.file_content[data->map.map_start_index + start]);
+		if (result[start] == NULL)
+			exit_error_with_array(data, result, "Map copy failed");
+		start++;
 	}
-	map[j] = NULL;
-	return (map);
+	result[start] = NULL;
+	return (result);
 }
 
-void check_player(t_data *data)
+void	check_player(t_data *data)
 {
-	int     i = 0;
-	int     j;
-	int     count = 0;
-	char  **map = data->map.map;
+	int		row;
+	int		col;
+	int		count;
+	char	**map;
 
-	while (map[i])
+	count = 0;
+	row = 0;
+	map = data->map.map;
+	while (map[row] != NULL)
 	{
-		j = 0;
-		while (map[i][j])
+		col = 0;
+		while (map[row][col] != '\0')
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S'
-			 || map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[row][col] == 'N'
+				|| map[row][col] == 'S'
+				|| map[row][col] == 'E'
+				|| map[row][col] == 'W')
 				count++;
-			j++;
+			col++;
 		}
-		i++;
+		row++;
 	}
 	if (count != 1)
 		exit_error_with_array(data, NULL, "Invalid number of player");
 }
 
-void player_start_position(t_data *data)
+void	player_start_position(t_data *data)
 {
-	int     i = 0;
-	int     j;
-	char  **map = data->map.map;
+	int		row;
+	int		col;
+	char	**map;
 
-	while (map[i])
+	row = 0;
+	map = data->map.map;
+	while (map[row] != NULL)
 	{
-		j = 0;
-		while (map[i][j])
+		col = 0;
+		while (map[row][col] != '\0')
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S'
-			 || map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[row][col] == 'N'
+				|| map[row][col] == 'S'
+				|| map[row][col] == 'E'
+				|| map[row][col] == 'W')
 			{
-				data->player.pos_y = i + 0.5;
-				data->player.pos_x = j + 0.5;
-				set_player_angle_from_facing(data, map[i][j]);
-				return;
+				data->player.pos_y = row + 0.5;
+				data->player.pos_x = col + 0.5;
+				set_player_angle_from_facing(data, map[row][col]);
+				return ;
 			}
-			j++;
+			col++;
 		}
-		i++;
+		row++;
 	}
 }

@@ -6,7 +6,7 @@
 #    By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 08:55:30 by nolecler          #+#    #+#              #
-#    Updated: 2025/06/11 14:46:07 by rraumain         ###   ########.fr        #
+#    Updated: 2025/06/11 18:58:15 by rraumain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX_LIB = -L$(MLXDIR) -lmlx -lXext -lX11 -lm -lz
 
 SRC_INIT = $(addprefix init/, init.c)
 SRC_PARSING = $(addprefix parsing/, parse_args.c get_file.c parse_file.c parse_colors.c parse_map.c map.c)
-SRC_UTILS = $(addprefix utils/, utils_0.c utils_1.c utils_2.c free.c)
+SRC_UTILS = $(addprefix utils/, utils_0.c utils_1.c utils_2.c free.c string.c)
 SRC_RAYCASTING = $(addprefix raycasting/, raystart.c raycast.c utils.c)
 GET_NEXT_LINE = $(addprefix get_next_line/, get_next_line.c get_next_line_utils.c)#le .h a rajouter
 SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS) $(SRC_INIT) $(SRC_RAYCASTING)) $(GET_NEXT_LINE)
