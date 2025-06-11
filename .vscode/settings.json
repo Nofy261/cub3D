@@ -1,5 +1,7 @@
 {
-    "files.associations": {
-        "cstdlib": "c"
-    }
+  "files.associations": {
+    "*.c": "c",
+    "cstdlib": "c",
+    "keysym.h": "c"
+  }
 }

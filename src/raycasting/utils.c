@@ -3,24 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:14:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/09 15:15:40 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:22:50 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_player_angle_from_facing(t_data *data, char facing)
+void set_player_angle_from_facing(t_data *data, char facing)
 {
-	if (facing == 'N') // si le joueur regarde vers le nord
-		data->player->angle = 3 * M_PI / 2; // je lui donne l'angle associe a cette direction 
+	if (facing == 'N')
+	{
+		data->player.dir_x   =  0.0;
+		data->player.dir_y   = -1.0;
+		data->player.plane_x =  0.66;
+		data->player.plane_y =  0.0;
+	}
 	else if (facing == 'S')
-		data->player->angle = M_PI / 2;
+	{
+		data->player.dir_x   =  0.0;
+		data->player.dir_y   =  1.0;
+		data->player.plane_x = -0.66;
+		data->player.plane_y =  0.0;
+	}
 	else if (facing == 'E')
-		data->player->angle = 0;
+	{
+		data->player.dir_x   =  1.0;
+		data->player.dir_y   =  0.0;
+		data->player.plane_x =  0.0;
+		data->player.plane_y =  0.66;
+	}
 	else if (facing == 'W')
-		data->player->angle = M_PI;
+	{
+		data->player.dir_x   = -1.0;
+		data->player.dir_y   =  0.0;
+		data->player.plane_x =  0.0;
+		data->player.plane_y = -0.66;
+	}
 }
-

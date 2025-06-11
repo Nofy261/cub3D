@@ -3,106 +3,101 @@
 /*                                                        :::      ::::::::   */
 /*   raystart.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:53:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/09 15:16:55 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:30:59 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// determiner la position du joueur
-// determiner ou le joueur regarde
-// lancer des rayons dans tous le champ de vision (FOV) du J:
-// -si un rayon touche un mur : calcule la distance entre le mur touché et le joueur
-// -plus la distance est petite (mur proche) plus la hauteur du mur a dessiner est grande
-// -plus la distance est grande(mur loin) plus la hauteur du mur a dessiner est petite
-// -faire pareil pour chaque rayon envoyé == image 3D 
-// (Ex: 64colonnes de pixel(largeur) = 64 rayons a lancer)
-
-
-static int	is_traversable(char c)
+static int is_traversable(char c)
 {
-	if (c == '0' || c == 'N' || c == 'E' || c == 'W' || c == 'S')
-		return (1);
-	return (0);
+    return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-//on simule le deplacement et si c'est possible on fait le vrai deplacement ensuite
-static void colision(t_data *data, float orientation)
+/*
+ * Essaie de déplacer le joueur selon orient (en radians) en testant les collisions.
+ */
+static void handle_collision(t_data *data, double orient)
 {
-    float new_pos_x;
-    float new_pos_y;
+    double angle = atan2(data->player.dir_y, data->player.dir_x);
+    double nx = data->player.pos_x + cos(angle + orient) * 0.1;
+    double ny = data->player.pos_y + sin(angle + orient) * 0.1;
 
-    new_pos_x = data->player->player_pos_x + cos(data->player->angle + orientation) * 0.1;
-    new_pos_y = data->player->player_pos_y + sin(data->player->angle + orientation) * 0.1;
-    if (is_traversable(data->map->map[(int)new_pos_y][(int)new_pos_x]))
+    if (is_traversable(data->map.map[(int)ny][(int)nx]))
     {
-        data->player->player_pos_x += cos(data->player->angle + orientation) * 0.05;
-        data->player->player_pos_y += sin(data->player->angle + orientation) * 0.05;
-    }  
+        data->player.pos_x = nx;
+        data->player.pos_y = ny;
+    }
 }
 
-float	normalize_angle(float num, float min, float max)
+/*
+ * Callback clavier pour déplacements et rotations.
+ */
+static int key_mouv(int keycode, void *param)
 {
-	if (num < min)
-		return (max + num);
-	if (num > max)
-		return (num - max);
-	return (num);
+    t_data *data = param;
+
+    if (keycode == XK_W)
+        handle_collision(data, 0);
+    else if (keycode == XK_S)
+        handle_collision(data, M_PI);
+    else if (keycode == XK_A)
+        handle_collision(data, -M_PI/2);
+    else if (keycode == XK_D)
+        handle_collision(data, M_PI/2);
+    else if (keycode == XK_Left || keycode == XK_Right)
+    {
+        double rot = (keycode == XK_Left) ? -0.05 : 0.05;
+        /* rotation du vecteur direction */
+        double odx = data->player.dir_x;
+        data->player.dir_x = odx * cos(rot) - data->player.dir_y * sin(rot);
+        data->player.dir_y = odx * sin(rot) + data->player.dir_y * cos(rot);
+        /* rotation du plan de projection */
+        double opx = data->player.plane_x;
+        data->player.plane_x = opx * cos(rot) - data->player.plane_y * sin(rot);
+        data->player.plane_y = opx * sin(rot) + data->player.plane_y * cos(rot);
+    }
+    else if (keycode == XK_Escape)
+        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+
+    return (0);
 }
 
-// float normalize_angle(float num, float min, float max) // a comparer resultat
-// {
-//     float range = max - min;
-//     while (num < min)
-//         num += range;
-//     while (num > max)
-//         num -= range;
-//     return num;
-// }
-
-
-static void	key_mouv(mlx_key_data_t keydata, void *param)
-{
-	t_data	*data;
-
-	data = (t_data *)param;
-	if (keydata.key == MLX_KEY_A)
-		colision(data, -1 * (M_PI / 2));
-	if (keydata.key == MLX_KEY_D)
-		colision(data, (M_PI / 2));
-	if (keydata.key == MLX_KEY_W)
-		colision(data, 0);
-	if (keydata.key == MLX_KEY_S)
-		colision(data, M_PI);
-	if (keydata.key == MLX_KEY_LEFT)
-		data->player->angle = normalize_angle(data->player->angle - 0.05, 0, M_PI * 2.0);
-	if (keydata.key == MLX_KEY_RIGHT)
-		data->player->angle = normalize_angle(data->player->angle + 0.05, 0, M_PI * 2.0);
-	if (keydata.key == MLX_KEY_ESCAPE)
-		mlx_close_window(data->mlx);
-}
-
-
+/*
+ * Démarre la fenêtre, crée l’image, l’affiche, hook clavier et loop MLX.
+ */
 void start_game(t_data *data)
 {
-    data->mlx = mlx_init(WINDOWS_WIDTH, WINDOWS_HEIGHT, "cub3d", false);
-	if (!data->mlx)
-		exit_error_with_array(data, NULL, "MLX initialization failed");
-    data->image = mlx_new_image(data->mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT);
-    if (!data->image)
-        exit_error_with_array(data, NULL, "Failed to create image");
-    if (mlx_image_to_window(data->mlx, data->image, 0, 0) < 0)
-        exit_error_with_array(data, NULL, "Image couln't be displayed");
-    mlx_key_hook(data->mlx, key_mouv, (void *)data);
-	// mlx_loop_hook(data->mlx, raycast, (void *)data);
-	// mlx_loop(data->mlx);
+    data->mlx_ptr = mlx_init();
+    if (!data->mlx_ptr)
+        exit_error(data, "Failed to init MLX");
+
+    data->win_ptr = mlx_new_window(data->mlx_ptr,
+                                   WINDOWS_WIDTH,
+                                   WINDOWS_HEIGHT,
+                                   "cub3d");
+    if (!data->win_ptr)
+        exit_error(data, "Failed to create window");
+
+    data->screen.img_ptr = mlx_new_image(data->mlx_ptr,
+                                         WINDOWS_WIDTH,
+                                         WINDOWS_HEIGHT);
+    if (!data->screen.img_ptr)
+        exit_error(data, "Failed to create image");
+
+    data->screen.data = mlx_get_data_addr(data->screen.img_ptr,
+                                          &data->screen.bpp,
+                                          &data->screen.size_line,
+                                          &data->screen.endian);
+
+    mlx_put_image_to_window(data->mlx_ptr,
+                            data->win_ptr,
+                            data->screen.img_ptr,
+                            0, 0);
+
+    mlx_key_hook(data->win_ptr, key_mouv, data);
+    mlx_loop(data->mlx_ptr);
 }
-
-
-
-
-
-
