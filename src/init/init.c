@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:17:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/09 12:44:53 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:55:27 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void init(t_data *data)
     data->player->player_pos_x = 1;
     data->player->player_pos_y = 1;
     data->player->angle = 0.0;
+    data->player->fov = 1.047;
 
 }
+
 

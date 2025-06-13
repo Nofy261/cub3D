@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:12:01 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/09 15:30:13 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 11:05:39 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,21 @@
 // 3-Répéter pour tous les rayons
 
 
+// Parcourir chaque colonne de l’écran.
+// Calculer l’angle du rayon.
+// Lancer un rayon jusqu’à rencontrer un mur.
+// Corriger la distance avec l’angle (anti fish-eye).
+// Calculer la hauteur du mur.
+// Dessiner la colonne avec la bonne texture.
+// Répéter pour tout l’écran.
+
+
+
+
+
 // void raycast()
 // {
-
+        
 
 
     

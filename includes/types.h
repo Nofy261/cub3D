@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/09 15:31:57 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 09:21:59 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ typedef struct s_counter
 
 typedef struct s_player
 {
-    float     player_pos_x;
-    float     player_pos_y;
-    float     angle;
-    
+    float   player_pos_x;
+    float   player_pos_y;
+    float   angle;//angle vers lequel le joueur regarde
+    float   fov; // champ de vision       
 }   t_player;
 
 
