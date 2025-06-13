@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/12 10:05:19 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:16:10 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void free_data(t_data *data)
 	if (!data)
 		return;
 	free_textures(data);
+	if (data->window)
+		mlx_destroy_window(data->mlx, data->window);
 	if (data->map.file_content)
 		free_array(data->map.file_content);
 	if (data->map.map)

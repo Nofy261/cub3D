@@ -1,0 +1,39 @@
+{
+   mlx_strdup_display_name
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:XOpenDisplay
+   fun:mlx_init
+}
+
+{
+   mlx_xinit_extension
+   Memcheck:Leak
+   fun:malloc
+   fun:XInitExtension
+   fun:XextAddDisplay
+   fun:XShmQueryVersion
+   fun:mlx_int_deal_shm
+   fun:mlx_init
+}
+
+{
+   mlx_xext_add_display
+   Memcheck:Leak
+   fun:malloc
+   fun:XextAddDisplay
+   fun:XShmQueryVersion
+   fun:mlx_int_deal_shm
+   fun:mlx_init
+}
+
+{
+   mlx_xext_anonymous
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libXext.so*
+   fun:XextAddDisplay
+   fun:XShmQueryVersion
+   fun:mlx_init
+}
