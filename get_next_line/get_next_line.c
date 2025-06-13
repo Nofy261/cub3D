@@ -3,16 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 11:58:18 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/15 12:30:23 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:35:24 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-//#include "../cub3d.h"
 #include "cub3d.h"
+
+static char	*ft_strjoinfree(char *stash, char *buffer)
+{
+	char	*result;
+	size_t	i;
+	size_t	j;
+	size_t	k;
+
+	k = 0;
+	result = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buffer) + 1));
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (stash[i])
+		result[k++] = stash[i++];
+	j = 0;
+	while (buffer[j])
+		result[k++] = buffer[j++];
+	result[k] = '\0';
+	free(stash);
+	return (result);
+}
 
 static char	*read_line(char *stash, int fd)
 {

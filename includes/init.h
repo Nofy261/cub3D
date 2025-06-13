@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:21:41 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/21 15:26:11 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:46:26 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 
 # include "cub3d.h"
 
-void allocate(t_data *data);
-void init(t_data *data);
-
-
-
-
-
-
-
-
-
-
+void	init(t_data *data);
 
 #endif

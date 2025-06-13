@@ -3,48 +3,39 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+         #
+#    By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 08:55:30 by nolecler          #+#    #+#              #
-#    Updated: 2025/06/09 15:15:00 by nolecler         ###   ########.fr        #
+#    Updated: 2025/06/13 11:16:27 by rraumain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -g
-MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
-
+CFLAGS = -Wall -Wextra -Werror -g
+INCLUDES = -Iincludes -Iget_next_line -I$(MLXDIR) -Ilibft
+MLXDIR  = mlx
+MLX_LIB = -L$(MLXDIR) -lmlx -lXext -lX11 -lm -lz
+LIBFTDIR = libft
+LIBFT_LIB = -L$(LIBFTDIR) -lft
 
 SRC_INIT = $(addprefix init/, init.c)
 SRC_PARSING = $(addprefix parsing/, parse_args.c get_file.c parse_file.c parse_colors.c parse_map.c map.c)
-SRC_UTILS = $(addprefix utils/, utils_0.c utils_1.c utils_2.c free.c)
-SRC_RAYCASTING = $(addprefix raycasting/, raystart.c raycast.c utils.c)
-GET_NEXT_LINE = $(addprefix get_next_line/, get_next_line.c get_next_line_utils.c)#le .h a rajouter
-INCLUDES = -Iincludes -Iget_next_line
+SRC_UTILS = $(addprefix utils/, exit.c free.c string.c)
+SRC_RAYCASTING = $(addprefix raycasting/, raystart.c collision.c input.c raycast.c render.c utils.c)
+GET_NEXT_LINE = $(addprefix get_next_line/, get_next_line.c)
 SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS) $(SRC_INIT) $(SRC_RAYCASTING)) $(GET_NEXT_LINE)
 
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-
-
 violet='\033[1;35m'
 
-RM = rm -f
+all: libft_build mlx_build $(NAME)
 
-all: mlx_build $(NAME)
-
-$(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) -o $(NAME) 
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LIB) -o $(NAME)
 	@echo $(violet)"Executable is ready"
-
-
-$(OBJ_DIR)/%.o: get_next_line%.c | $(OBJ_DIR)
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(MLXFLAGS) $(INCLUDES) -c $< -o $@
-
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	mkdir -p $(dir $@)
@@ -53,22 +44,22 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-#mlx_build:
-#	@cd MLX42 && cmake -B build
-#	@cd MLX42 && cmake --build build -j4
+libft_build:
+	@$(MAKE) -C $(LIBFTDIR)
 
 mlx_build:
-	@cd MLX42 && cmake -B build > /dev/null 2>&1
-	@cd MLX42 && cmake --build build -j4
+	@$(MAKE) -C $(MLXDIR)
 
-
-clean: 
-	@$(RM) $(OBJ)
+clean:
+	rm -rf $(OBJ_DIR)
+	@$(MAKE) -C $(LIBFTDIR) clean
+	@$(MAKE) -C $(MLXDIR) clean
 
 fclean: clean
-	@$(RM) $(NAME) 
+	rm -f $(NAME)
+	@$(MAKE) -C $(LIBFTDIR) fclean
+	@$(MAKE) -C $(MLXDIR) clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
-
+.PHONY: all clean fclean re libft_build mlx_build

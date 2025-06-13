@@ -1,52 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:20:42 by nolecler          #+#    #+#             */
-/*   Updated: 2025/05/31 13:14:08 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:40:49 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-
-int	ft_strcspn(char *line, char *str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (line[i])
-	{
-		j = 0;
-		while (str[j])
-		{
-			if (line[i] == str[j])
-				return (i);
-			j++;
-		}
-		i++;
-	}
-	return (i);
-}
-
-char	*skip_whitespaces(char *str)
-{  
-    while (str && is_whitespace(*str))
-        str++;   
-    return (str);
-}
-
 
 void	exit_error(t_data *data, char *msg)
 {

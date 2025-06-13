@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/09 12:41:15 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:05:19 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void free_array(char **array)
 {
-	int i;
+	int i = 0;
 
-	i = 0;
 	if (!array)
-		return ;
-	while(array[i])
+		return;
+	while (array[i])
 	{
 		free(array[i]);
 		i++;
@@ -29,43 +28,27 @@ void free_array(char **array)
 
 void free_textures(t_data *data)
 {
-    if (!data->texture)
-        return;
-    if (data->texture->north_texture)
-        mlx_delete_texture(data->texture->north_texture);
-    if (data->texture->south_texture)
-        mlx_delete_texture(data->texture->south_texture);
-    if (data->texture->west_texture)
-        mlx_delete_texture(data->texture->west_texture);
-    if (data->texture->east_texture)
-        mlx_delete_texture(data->texture->east_texture);
-    free(data->texture);
-    data->texture = NULL;
+	if (!data || !data->mlx)
+		return;
+	if (data->north_texture.image)
+		mlx_destroy_image(data->mlx, data->north_texture.image);
+	if (data->south_texture.image)
+		mlx_destroy_image(data->mlx, data->south_texture.image);
+	if (data->west_texture.image)
+		mlx_destroy_image(data->mlx, data->west_texture.image);
+	if (data->east_texture.image)
+		mlx_destroy_image(data->mlx, data->east_texture.image);
+	if (data->screen.image)
+		mlx_destroy_image(data->mlx, data->screen.image);
 }
 
 void free_data(t_data *data)
 {
 	if (!data)
-		return ;
-    if (data->map)
-    {
-        if (data->map->file_content)
-            free_array(data->map->file_content);
-		if (data->map->map)
-            free_array(data->map->map);
-        free(data->map);
-		data->map = NULL;
-    }
-	if (data->texture)
-		free_textures(data);
-	if (data->counter)
-	{
-		free(data->counter);
-		data->counter = NULL;
-	}
-	if (data->player)
-	{
-		free(data->player);
-		data->player = NULL;
-	}
+		return;
+	free_textures(data);
+	if (data->map.file_content)
+		free_array(data->map.file_content);
+	if (data->map.map)
+		free_array(data->map.map);
 }

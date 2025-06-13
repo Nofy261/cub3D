@@ -3,39 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:51:25 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/02 09:19:03 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:44:33 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-// alloue un nouveau tableau (de la taille de l'ancien tab + 2)
-// copie tout le contenu de l ancien tableau dans ce nouveau tableau
-// allocation d'une place pour recuperer la prochaine ligne a lire
-// return un tableau de tableau avec une place en memoire vide pret a stocker la prochaine ligne a lire
-static char **add_line_to_tab(char **old_tab, int size_old_tab)
+static char	**expand_tab(char **old_tab, int old_size)
 {
-    // int size_old_tab = taille actuelle du tableau 
-	char **new_tab;
-	int i;
-	
-	new_tab = malloc(sizeof(char *) * (size_old_tab + 2));
-	if (!new_tab)
+	char	**new_tab;
+	int		i;
+
+	new_tab = malloc(sizeof(char *) * (old_size + 2));
+	if (new_tab == NULL)
 		return (NULL);
 	i = 0;
-	while (i < size_old_tab)
+	while (i < old_size)
 	{
 		new_tab[i] = ft_strdup(old_tab[i]);
-		if (!new_tab[i])
+		if (new_tab[i] == NULL)
 		{
 			while (--i >= 0)
 				free(new_tab[i]);
 			free(new_tab);
-			free_array(old_tab); 
+			free_array(old_tab);
 			return (NULL);
 		}
 		i++;
@@ -46,35 +40,43 @@ static char **add_line_to_tab(char **old_tab, int size_old_tab)
 	return (new_tab);
 }
 
-
-char **get_file_content(int fd)
+static int	store_line(char ***res_ptr, int i, char *line)
 {
-	int size;// compte le nombre de ligne dans result
-	char **result;
-	char *line;
+	char	**tmp;
 
-	size = 0;
-	result = NULL;
-	line = get_next_line(fd);
-	while (line != NULL)
+	tmp = expand_tab(*res_ptr, i);
+	if (tmp == NULL)
 	{
-		result = add_line_to_tab(result, size);
-		if (result == NULL)
-		{
-			free(line);
+		free(line);
+		return (0);
+	}
+	*res_ptr = tmp;
+	(*res_ptr)[i] = ft_substr(line, 0, ft_strcspn(line, "\n"));
+	if ((*res_ptr)[i] == NULL)
+	{
+		free(line);
+		return (0);
+	}
+	return (1);
+}
+
+char	**get_file_content(int fd)
+{
+	int		count;
+	char	**res;
+	char	*line;
+
+	count = 0;
+	res = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!store_line(&res, count, line))
 			break ;
-		}
-		result[size] = ft_substr(line, 0, ft_strcspn(line, "\n"));//supprime le \n a la fin du path.png
-		if (!result[size])
-		{
-			free(line);
-			break ;
-		}
-		size++;
+		count++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
-	return (result);
+	return (res);
 }
-
