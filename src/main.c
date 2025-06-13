@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 19:44:10 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:03:58 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	main(int argc, char **argv)
 
 	fd = parse_args_open_file(argc, argv);
 	init(&data);
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
+	data.mlx = mlx_init();
+	if (data.mlx == NULL)
 		exit_error(&data, "Failed to init MLX");
 	data.map.file_content = get_file_content(fd);
 	close(fd);

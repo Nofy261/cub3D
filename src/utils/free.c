@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 19:40:54 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:05:19 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ void free_array(char **array)
 
 void free_textures(t_data *data)
 {
-	if (!data || !data->mlx_ptr)
+	if (!data || !data->mlx)
 		return;
-	if (data->north_texture.img_ptr)
-		mlx_destroy_image(data->mlx_ptr, data->north_texture.img_ptr);
-	if (data->south_texture.img_ptr)
-		mlx_destroy_image(data->mlx_ptr, data->south_texture.img_ptr);
-	if (data->west_texture.img_ptr)
-		mlx_destroy_image(data->mlx_ptr, data->west_texture.img_ptr);
-	if (data->east_texture.img_ptr)
-		mlx_destroy_image(data->mlx_ptr, data->east_texture.img_ptr);
-	if (data->screen.img_ptr)
-		mlx_destroy_image(data->mlx_ptr, data->screen.img_ptr);
+	if (data->north_texture.image)
+		mlx_destroy_image(data->mlx, data->north_texture.image);
+	if (data->south_texture.image)
+		mlx_destroy_image(data->mlx, data->south_texture.image);
+	if (data->west_texture.image)
+		mlx_destroy_image(data->mlx, data->west_texture.image);
+	if (data->east_texture.image)
+		mlx_destroy_image(data->mlx, data->east_texture.image);
+	if (data->screen.image)
+		mlx_destroy_image(data->mlx, data->screen.image);
 }
 
 void free_data(t_data *data)

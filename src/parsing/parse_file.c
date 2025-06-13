@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 18:47:08 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/12 10:04:48 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	load_texture(char *line, t_texture *texture, t_data *data)
 	file = ft_split(line, ' ');
 	if (file == NULL || file[1] == NULL)
 		exit_error_with_array(data, file, "Invalid textureture path");
-	texture->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, file[1],
-			&texture->width, &texture->height);
-	if (texture->img_ptr == NULL)
+	texture->image = mlx_xpm_file_to_image(data->mlx, file[1], &texture->width,
+		&texture->height);
+	if (texture->image == NULL)
 		exit_error_with_array(data, file, "Failed to load textureture");
-	texture->data = mlx_get_data_addr(texture->img_ptr, &texture->bpp,
+	texture->data = mlx_get_data_addr(texture->image, &texture->bpp,
 			&texture->size_line, &texture->endian);
 	free_array(file);
 }

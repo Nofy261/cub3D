@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.h                                          :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 12:56:20 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/13 10:39:14 by rraumain         ###   ########.fr       */
+/*   Created: 2025/06/11 20:02:00 by rraumain          #+#    #+#             */
+/*   Updated: 2025/06/13 10:39:04 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_H
-# define RAYCAST_H
+#include "cub3d.h"
 
-# include "cub3d.h"
+int	render_frame(void *param)
+{
+	t_data *data = param;
 
-// RAYSTART.C
-void	start_game(t_data *data);
-
-//	COLLISION.C
-int		handle_collision(t_data *data, double orientation);
-
-// //	INPUT.C
-void	handle_input_hooks(t_data *data);
-
-//	RENDER.C
-int	render_frame(void *param);
-
-//	RAYCAST.C
-void	raycast_loop(t_data *data);
-
-// UTILS.C
-void	set_player_angle_from_facing(t_data *data, char facing);
-
-#endif
+	if (data->key_up)
+		handle_collision(data, 0);
+	if (data->key_down)
+		handle_collision(data, M_PI);
+	if (data->key_left)
+		handle_collision(data, -M_PI / 2);
+	if (data->key_right)
+		handle_collision(data, M_PI / 2);
+	raycast_loop(data);
+	mlx_put_image_to_window(data->mlx, data->window, data->screen.image, 0, 0);
+	return (0);
+}

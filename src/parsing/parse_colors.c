@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 08:12:57 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 19:14:23 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/13 10:46:54 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	parse_color_line(t_data *data, char *str, int floor_flag)
 	if (floor_flag)
 		assign_color(data->map.floor_color, r, g, b);
 	else
-		assign_color(data->map.ceiling_color, r, g, b);
+		assign_color(data->map.sky_color, r, g, b);
 	free_array(file);
 }
 

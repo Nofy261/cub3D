@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 10:17:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/13 10:46:39 by rraumain         ###   ########.fr       */
+/*   Created: 2025/06/11 20:19:48 by rraumain          #+#    #+#             */
+/*   Updated: 2025/06/13 10:41:11 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	reset_color(int *c)
+int	handle_collision(t_data *data, double orientation)
 {
-	c[0] = -1;
-	c[1] = -1;
-	c[2] = -1;
-}
+	double angle;
+	double new_x;
+	double new_y;
 
-void	init(t_data *data)
-{
-	ft_memset(data, 0, sizeof(*data));
-	reset_color(data->map.floor_color);
-	reset_color(data->map.sky_color);
-	data->player.pos_x = 1.0;
-	data->player.pos_y = 1.0;
+	angle = atan2(data->player.dir_y, data->player.dir_x);
+	new_x = data->player.pos_x + cos(angle + orientation) * 0.01;
+	new_y = data->player.pos_y + sin(angle + orientation) * 0.01;
+	if (data->map.map[(int)new_y][(int)new_x] != '1')
+	{
+		data->player.pos_x = new_x;
+		data->player.pos_y = new_y;
+	}
+	return (0);
 }

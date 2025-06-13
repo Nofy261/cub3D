@@ -6,13 +6,13 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:14:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 15:22:50 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/13 10:29:36 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void set_player_angle_from_facing(t_data *data, char facing)
+void	set_player_angle_from_facing(t_data *data, char facing)
 {
 	if (facing == 'N')
 	{
