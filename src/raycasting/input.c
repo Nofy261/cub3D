@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:19:22 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/24 11:32:07 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:00:40 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	on_key_press(int keycode, t_data *data)
 		data->key_up = 1;
 	else if (keycode == XK_s || keycode == XK_S || keycode == XK_Down)
 		data->key_down = 1;
-	else if (keycode == XK_a || keycode == XK_A || keycode == XK_Left)
+	else if (keycode == XK_a || keycode == XK_A)
 		data->key_left = 1;
-	else if (keycode == XK_d || keycode == XK_D || keycode == XK_Right)
+	else if (keycode == XK_d || keycode == XK_D)
 		data->key_right = 1;
 	else if (keycode == XK_Left)
 		data->key_rotate_left = 1;
@@ -55,7 +55,6 @@ static int	close_window(t_data *data)
 {
 	free_data(data);
 	exit(0);
-	//return (0);
 }
 
 void	handle_input_hooks(t_data *data)

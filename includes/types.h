@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/24 11:48:39 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:14:43 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define RGB(r,g,b)  (((r) << 16) | ((g) << 8) | (b))
 #endif
 
-#define ROT_SPEED 0.10// ajout
+#define ROT_SPEED 0.05// ajout
 
 typedef struct s_texture
 {
@@ -85,7 +85,7 @@ typedef struct s_data
 	int			key_left;
 	int			key_right;
 
-	int			key_rotate_left;//ajout a init??
+	int			key_rotate_left;//ajout 
 	int			key_rotate_right;//ajout 24-06
 }	t_data;
 
