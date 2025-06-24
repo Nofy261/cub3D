@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:56:20 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/13 10:39:14 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:27:13 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	handle_input_hooks(t_data *data);
 
 //	RENDER.C
 int	render_frame(void *param);
+void	rotate_camera(t_data *data, double angle); // test ajout 24-06
 
 //	RAYCAST.C
 void	raycast_loop(t_data *data);
