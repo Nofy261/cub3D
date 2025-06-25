@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 18:57:21 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/11 19:40:40 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:58:26 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	ft_strcspn(char *line, char *str)
 }
 
 char	*skip_whitespaces(char *str)
-{  
-    while (str && is_whitespace(*str))
-        str++;   
-    return (str);
+{
+	while (str && is_whitespace(*str))
+		str++;
+	return (str);
 }

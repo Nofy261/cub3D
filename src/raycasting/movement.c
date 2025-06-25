@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision.c                                        :+:      :+:    :+:   */
+/*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:19:48 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/25 13:46:06 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:28:32 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	handle_collision(t_data *data, double orientation, double delta_time)
 {
-	double angle;
-	double new_x;
-	double new_y;
+	double	angle;
+	double	new_x;
+	double	new_y;
 
 	angle = atan2(data->player.dir_y, data->player.dir_x);
 	new_x = data->player.pos_x + cos(angle + orientation) * SPEED * delta_time;
@@ -27,4 +27,21 @@ int	handle_collision(t_data *data, double orientation, double delta_time)
 		data->player.pos_y = new_y;
 	}
 	return (0);
+}
+
+void	rotate_camera(t_data *data, double angle)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = data->player.dir_x;
+	old_plane_x = data->player.plane_x;
+	data->player.dir_x = data->player.dir_x * cos(angle)
+		- data->player.dir_y * sin(angle);
+	data->player.dir_y = old_dir_x * sin(angle)
+		+ data->player.dir_y * cos(angle);
+	data->player.plane_x = data->player.plane_x * cos(angle)
+		- data->player.plane_y * sin(angle);
+	data->player.plane_y = old_plane_x * sin(angle)
+		+ data->player.plane_y * cos(angle);
 }

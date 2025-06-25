@@ -6,7 +6,7 @@
 #    By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 08:55:30 by nolecler          #+#    #+#              #
-#    Updated: 2025/06/13 11:16:27 by rraumain         ###   ########.fr        #
+#    Updated: 2025/06/26 00:07:14 by rraumain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT_LIB = -L$(LIBFTDIR) -lft
 SRC_INIT = $(addprefix init/, init.c)
 SRC_PARSING = $(addprefix parsing/, parse_args.c get_file.c parse_file.c parse_colors.c parse_map.c map.c)
 SRC_UTILS = $(addprefix utils/, exit.c free.c string.c)
-SRC_RAYCASTING = $(addprefix raycasting/, raystart.c collision.c input.c raycast.c render.c utils.c)
+SRC_RAYCASTING = $(addprefix raycasting/, raystart.c movement.c input.c raycast.c render.c draw.c utils.c)
 GET_NEXT_LINE = $(addprefix get_next_line/, get_next_line.c)
 SRC = $(addprefix src/, main.c $(SRC_PARSING) $(SRC_UTILS) $(SRC_INIT) $(SRC_RAYCASTING)) $(GET_NEXT_LINE)
 

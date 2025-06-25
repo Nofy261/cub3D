@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/13 15:16:10 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:59:51 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void free_array(char **array)
+void	free_array(char **array)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (!array)
-		return;
+		return ;
 	while (array[i])
 	{
 		free(array[i]);
@@ -26,10 +27,10 @@ void free_array(char **array)
 	free(array);
 }
 
-void free_textures(t_data *data)
+void	free_textures(t_data *data)
 {
 	if (!data || !data->mlx)
-		return;
+		return ;
 	if (data->north_texture.image)
 		mlx_destroy_image(data->mlx, data->north_texture.image);
 	if (data->south_texture.image)
@@ -42,13 +43,16 @@ void free_textures(t_data *data)
 		mlx_destroy_image(data->mlx, data->screen.image);
 }
 
-void free_data(t_data *data)
+void	free_data(t_data *data)
 {
 	if (!data)
-		return;
+		return ;
 	free_textures(data);
 	if (data->window)
+	{
 		mlx_destroy_window(data->mlx, data->window);
+		mlx_loop_end(data->mlx);
+	}
 	if (data->map.file_content)
 		free_array(data->map.file_content);
 	if (data->map.map)

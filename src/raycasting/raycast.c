@@ -6,23 +6,14 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:13:48 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/25 14:29:19 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:49:22 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_raycast(t_data *data, int x, t_ray *ray)
+static void	find_border_x(t_data *data, t_ray *ray)
 {
-	double cam;
-
-	cam = 2 * x / (double)WINDOWS_WIDTH - 1;
-	ray->dir_x    = data->player.dir_x + data->player.plane_x * cam;
-	ray->dir_y    = data->player.dir_y + data->player.plane_y * cam;
-	ray->map_x    = (int)data->player.pos_x;
-	ray->map_y    = (int)data->player.pos_y;
-	ray->delta_x  = fabs(1.0 / ray->dir_x);
-	ray->delta_y  = fabs(1.0 / ray->dir_y);
 	if (ray->dir_x < 0)
 	{
 		ray->step_x = -1;
@@ -33,6 +24,10 @@ static void	init_raycast(t_data *data, int x, t_ray *ray)
 		ray->step_x = 1;
 		ray->side_x = (ray->map_x + 1 - data->player.pos_x) * ray->delta_x;
 	}
+}
+
+static void	find_border_y(t_data *data, t_ray *ray)
+{
 	if (ray->dir_y < 0)
 	{
 		ray->step_y = -1;
@@ -45,6 +40,21 @@ static void	init_raycast(t_data *data, int x, t_ray *ray)
 	}
 }
 
+static void	init_raycast(t_data *data, int x, t_ray *ray)
+{
+	double	cam;
+
+	cam = 2 * x / (double)WINDOWS_WIDTH - 1;
+	ray->dir_x = data->player.dir_x + data->player.plane_x * cam;
+	ray->dir_y = data->player.dir_y + data->player.plane_y * cam;
+	ray->map_x = (int)data->player.pos_x;
+	ray->map_y = (int)data->player.pos_y;
+	ray->delta_x = fabs(1.0 / ray->dir_x);
+	ray->delta_y = fabs(1.0 / ray->dir_y);
+	find_border_x(data, ray);
+	find_border_y(data, ray);
+}
+
 static void	perform_dda(t_data *data, t_ray *ray)
 {
 	while (1)
@@ -52,113 +62,24 @@ static void	perform_dda(t_data *data, t_ray *ray)
 		if (ray->side_x < ray->side_y)
 		{
 			ray->side_x += ray->delta_x;
-			ray->map_x  += ray->step_x;
-			ray->side    = 0;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
 		}
 		else
 		{
 			ray->side_y += ray->delta_y;
-			ray->map_y  += ray->step_y;
-			ray->side    = 1;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
 		}
 		if (data->map.map[ray->map_y][ray->map_x] == '1')
 			break ;
 	}
 }
 
-static void	draw_background(t_data *data, int x)
-{
-	unsigned int	sky;
-	unsigned int	floor;
-	int 			y;
-
-	sky = RGB(data->map.sky_color[0], data->map.sky_color[1], data->map.sky_color[2]);
-	floor = RGB(data->map.floor_color[0], data->map.floor_color[1], data->map.floor_color[2]);
-	y = 0;
-	while (y < WINDOWS_HEIGHT / 2)
-	{
-		*(unsigned int *)(data->screen.data + y * data->screen.size_line
-		  + x * (data->screen.bpp / 8)) = sky;
-		y++;
-	}
-	while (y < WINDOWS_HEIGHT)
-	{
-		*(unsigned int *)(data->screen.data + y * data->screen.size_line
-		  + x * (data->screen.bpp / 8)) = floor;
-		y++;
-	}
-}
-
-static void	draw_wall(t_data *data, int x, t_ray *ray)
-{
-	int				height;
-	int				start;
-	int				end;
-	int				y;
-	t_texture		*texture;
-	unsigned int	color;
-	double			wall_x;
-	int				texture_x;
-	int				texture_y;
-	double			texture_step;
-	double			texture_pos;
-
-	height = (int)(WINDOWS_HEIGHT / ray->perp_dist);
-	start = -height / 2 + WINDOWS_HEIGHT / 2;
-	end = height / 2 + WINDOWS_HEIGHT / 2;
-	if (start < 0)
-		start = 0;
-	if (end >= WINDOWS_HEIGHT)
-		end = WINDOWS_HEIGHT - 1;
-
-	if (ray->side == 0)
-	{
-		if (ray->dir_x > 0)
-			texture = &data->east_texture;
-		else
-			texture = &data->west_texture;
-	}
-	else
-	{
-		if (ray->dir_y > 0)
-			texture = &data->south_texture;
-		else
-			texture = &data->north_texture;
-	}
-
-	if (ray->side == 0)
-		wall_x = data->player.pos_y + ray->perp_dist * ray->dir_y;
-	else
-		wall_x = data->player.pos_x + ray->perp_dist * ray->dir_x;
-	wall_x -= floor(wall_x);
-	texture_x = (int)(wall_x * (double)texture->width);
-	if (ray->side == 0 && ray->dir_x > 0)
-		texture_x = texture->width - texture_x - 1;
-	if (ray->side == 1 && ray->dir_y < 0)
-		texture_x = texture->width - texture_x - 1;
-
-	texture_step = (double)texture->height / (double)height;
-	texture_pos = (start - WINDOWS_HEIGHT/2 + height/2) * texture_step;
-	
-	
-	y = start;
-	while (y <= end)
-	{
-		texture_y = (int)texture_pos % texture->height;
-		texture_pos += texture_step;
-
-		color = *(unsigned int *)(texture->data + texture_y * texture->size_line + texture_x * (texture->bpp / 8));
-
-		*(unsigned int *)(data->screen.data + y * data->screen.size_line
-			+ x * (data->screen.bpp / 8)) = color;
-		y++;
-	}
-}
-
 void	raycast_loop(t_data *data)
 {
-	int   x;
-	t_ray ray;
+	int		x;
+	t_ray	ray;
 
 	x = 0;
 	while (x < WINDOWS_WIDTH)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:19:22 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/24 14:00:40 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:38:55 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ static int	close_window(t_data *data)
 
 void	handle_input_hooks(t_data *data)
 {
-	mlx_hook(data->window, KeyPress,   KeyPressMask, on_key_press, data);
+	mlx_hook(data->window, KeyPress, KeyPressMask, on_key_press, data);
 	mlx_hook(data->window, KeyRelease, KeyReleaseMask, on_key_release, data);
 	mlx_hook(data->window, 17, 0, close_window, data);
 }
-

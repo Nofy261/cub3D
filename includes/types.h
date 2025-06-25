@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/25 13:45:29 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:22:55 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,15 @@ typedef struct s_ray
 	int		side;
 	double	perp_dist;
 }	t_ray;
+
+typedef struct s_line_config
+{
+	int		y;
+	int		texture_x;
+	int		texture_y;
+	double	texture_step;
+	double	texture_pos;
+	double	wall_x;
+}	t_line_config;
 
 #endif
