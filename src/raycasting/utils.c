@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:14:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/13 13:46:15 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:32:05 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,15 @@ void	set_player_angle_from_facing(t_data *data, char facing)
 		data->player.plane_x =  0.0;
 		data->player.plane_y = -0.66;
 	}
+}
+
+double	get_time()
+{
+	struct timeval	tv;
+	double			time;
+
+	time = 0;
+	gettimeofday(&tv, NULL);
+	time = tv.tv_sec + tv.tv_usec * 1e-6;
+	return (time);
 }

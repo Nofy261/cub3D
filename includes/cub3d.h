@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:48:47 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/13 13:58:26 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:13:19 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <sys/time.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -31,9 +32,9 @@
 # include "init.h"
 # include "raycast.h"
 
-# define WINDOWS_WIDTH 1040
-# define WINDOWS_HEIGHT 720
-// # define WINDOWS_WIDTH 1920
-// # define WINDOWS_HEIGHT 1080
+// # define WINDOWS_WIDTH 1040
+// # define WINDOWS_HEIGHT 720
+# define WINDOWS_WIDTH 1920
+# define WINDOWS_HEIGHT 1080
 
 #endif

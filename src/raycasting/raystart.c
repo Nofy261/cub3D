@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:53:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/12 10:10:17 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:31:07 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	start_game(t_data *data)
 	data->screen.data = mlx_get_data_addr(data->screen.image,
 			&data->screen.bpp, &data->screen.size_line, &data->screen.endian);
 	handle_input_hooks(data);
+	data->last_time = get_time();
 	mlx_loop_hook(data->mlx, render_frame, data);
 	mlx_loop(data->mlx);
 }

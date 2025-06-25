@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:02:00 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/24 14:06:46 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:36:56 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ void	rotate_camera(t_data *data, double angle)// test ajout 24-06
 int	render_frame(void *param)
 {
 	t_data *data = param;
+	double	now;
+	double	delta_time;
+	char 	*fps;
 
+	now = get_time();
+	delta_time = now - data->last_time;
+	data->last_time = now;
 	if (data->key_up)
 		handle_collision(data, 0);
 	if (data->key_down)
@@ -44,5 +50,12 @@ int	render_frame(void *param)
 		rotate_camera(data, ROT_SPEED);
 	raycast_loop(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->screen.image, 0, 0);
+	fps = ft_itoa((int)(1/delta_time + 0.5));
+	if (fps)
+	{
+		mlx_string_put(data->mlx, data->window, 20, 20, 0xFF0000, fps);
+		free(fps);
+	}
+	
 	return (0);
 }
