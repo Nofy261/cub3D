@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:02:00 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/25 13:36:56 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:45:50 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ int	render_frame(void *param)
 	delta_time = now - data->last_time;
 	data->last_time = now;
 	if (data->key_up)
-		handle_collision(data, 0);
+		handle_collision(data, 0, delta_time);
 	if (data->key_down)
-		handle_collision(data, M_PI);
+		handle_collision(data, M_PI, delta_time);
 	if (data->key_left)
-		handle_collision(data, -M_PI / 2);
+		handle_collision(data, -M_PI / 2, delta_time);
 	if (data->key_right)
-		handle_collision(data, M_PI / 2);
+		handle_collision(data, M_PI / 2, delta_time);
 	if (data->key_rotate_left) // ajout 24-06
-		rotate_camera(data, -ROT_SPEED);
+		rotate_camera(data, -SPEED * delta_time);
 	if (data->key_rotate_right) // ajout 24-06
-		rotate_camera(data, ROT_SPEED);
+		rotate_camera(data, SPEED * delta_time);
 	raycast_loop(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->screen.image, 0, 0);
 	fps = ft_itoa((int)(1/delta_time + 0.5));

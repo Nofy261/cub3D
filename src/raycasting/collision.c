@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:19:48 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/13 14:36:18 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:46:06 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	handle_collision(t_data *data, double orientation)
+int	handle_collision(t_data *data, double orientation, double delta_time)
 {
 	double angle;
 	double new_x;
 	double new_y;
 
 	angle = atan2(data->player.dir_y, data->player.dir_x);
-	new_x = data->player.pos_x + cos(angle + orientation) * 0.05;
-	new_y = data->player.pos_y + sin(angle + orientation) * 0.05;
+	new_x = data->player.pos_x + cos(angle + orientation) * SPEED * delta_time;
+	new_y = data->player.pos_y + sin(angle + orientation) * SPEED * delta_time;
 	if (data->map.map[(int)new_y][(int)new_x] != '1')
 	{
 		data->player.pos_x = new_x;

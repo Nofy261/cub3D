@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/25 12:01:07 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:45:29 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define RGB(r,g,b)  (((r) << 16) | ((g) << 8) | (b))
 #endif
 
-#define ROT_SPEED 0.05// ajout
+#define SPEED 2.0
 
 typedef struct s_texture
 {
