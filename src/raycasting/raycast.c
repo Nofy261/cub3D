@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:13:48 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/13 10:56:44 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:29:19 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,61 @@ static void	draw_wall(t_data *data, int x, t_ray *ray)
 	int				height;
 	int				start;
 	int				end;
-	unsigned int	color;
 	int				y;
+	t_texture		*texture;
+	unsigned int	color;
+	double			wall_x;
+	int				texture_x;
+	int				texture_y;
+	double			texture_step;
+	double			texture_pos;
 
 	height = (int)(WINDOWS_HEIGHT / ray->perp_dist);
 	start = -height / 2 + WINDOWS_HEIGHT / 2;
-	color = 0xFFFFFF;
 	end = height / 2 + WINDOWS_HEIGHT / 2;
 	if (start < 0)
 		start = 0;
 	if (end >= WINDOWS_HEIGHT)
 		end = WINDOWS_HEIGHT - 1;
-	if (ray->side == 1)
-		color = (color >> 1) & 0x7F7F7F;
+
+	if (ray->side == 0)
+	{
+		if (ray->dir_x > 0)
+			texture = &data->east_texture;
+		else
+			texture = &data->west_texture;
+	}
+	else
+	{
+		if (ray->dir_y > 0)
+			texture = &data->south_texture;
+		else
+			texture = &data->north_texture;
+	}
+
+	if (ray->side == 0)
+		wall_x = data->player.pos_y + ray->perp_dist * ray->dir_y;
+	else
+		wall_x = data->player.pos_x + ray->perp_dist * ray->dir_x;
+	wall_x -= floor(wall_x);
+	texture_x = (int)(wall_x * (double)texture->width);
+	if (ray->side == 0 && ray->dir_x > 0)
+		texture_x = texture->width - texture_x - 1;
+	if (ray->side == 1 && ray->dir_y < 0)
+		texture_x = texture->width - texture_x - 1;
+
+	texture_step = (double)texture->height / (double)height;
+	texture_pos = (start - WINDOWS_HEIGHT/2 + height/2) * texture_step;
+	
+	
 	y = start;
 	while (y <= end)
 	{
+		texture_y = (int)texture_pos % texture->height;
+		texture_pos += texture_step;
+
+		color = *(unsigned int *)(texture->data + texture_y * texture->size_line + texture_x * (texture->bpp / 8));
+
 		*(unsigned int *)(data->screen.data + y * data->screen.size_line
 			+ x * (data->screen.bpp / 8)) = color;
 		y++;
