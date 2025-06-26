@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/26 00:59:51 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:54:03 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ void	free_data(t_data *data)
 		free_array(data->map.file_content);
 	if (data->map.map)
 		free_array(data->map.map);
+	mlx_destroy_display(data->mlx);
+    free(data->mlx);
 }

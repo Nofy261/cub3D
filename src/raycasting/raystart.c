@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:53:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/25 13:31:07 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:04:07 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	start_game(t_data *data)
 {
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		exit_error(data, "MLX init failed");
 	data->window = mlx_new_window(data->mlx, WINDOWS_WIDTH, WINDOWS_HEIGHT,
 			"cub3d");
 	if (data->window == NULL)
