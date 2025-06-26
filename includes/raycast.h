@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:56:20 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/26 00:57:37 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:37:35 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	raycast_loop(t_data *data);
 // UTILS.C
 void	set_player_angle_from_facing(t_data *data, char facing);
 double	get_time(void);
+int32_t	rgb(int32_t r, int32_t g, int32_t b);
 
 #endif

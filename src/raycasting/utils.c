@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:14:38 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/26 00:57:42 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:38:17 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,9 @@ double	get_time(void)
 	gettimeofday(&tv, NULL);
 	time = tv.tv_sec + tv.tv_usec * 1e-6;
 	return (time);
+}
+
+int32_t	rgb(int32_t r, int32_t g, int32_t b)
+{
+	return ((r << 16) | (g << 8) | b);
 }

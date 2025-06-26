@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 00:05:23 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/26 00:38:28 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:36:15 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ static void	draw_line(t_data *data, int x, t_line_config *line_config,
 void	draw_background(t_data *data, int x)
 {
 	int				y;
-	unsigned int	sky;
-	unsigned int	floor;
+	int32_t			sky;
+	int32_t			floor;
 
-	sky = RGB(data->map.sky_color[0], data->map.sky_color[1],
+	sky = rgb(data->map.sky_color[0], data->map.sky_color[1],
 			data->map.sky_color[2]);
-	floor = RGB(data->map.floor_color[0], data->map.floor_color[1],
+	floor = rgb(data->map.floor_color[0], data->map.floor_color[1],
 			data->map.floor_color[2]);
 	y = 0;
 	while (y < WINDOWS_HEIGHT / 2)

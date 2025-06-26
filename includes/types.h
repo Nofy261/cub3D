@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/26 00:22:55 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:32:38 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@
 # include "cub3d.h"
 
 // Uniquement pour vscode mac (c'est galère)
-#ifndef M_PI
-#  define M_PI 3.14159265358979323846
-#endif
+// #ifndef M_PI
+// #  define M_PI 3.14159265358979323846
+// #endif
 
-#ifndef RGB
-# define RGB(r,g,b)  (((r) << 16) | ((g) << 8) | (b))
-#endif
-
-#define SPEED 2.0
+# define SPEED 2.0
 
 typedef struct s_texture
 {
@@ -84,10 +80,8 @@ typedef struct s_data
 	int			key_down;
 	int			key_left;
 	int			key_right;
-
-	int			key_rotate_left;//ajout 
-	int			key_rotate_right;//ajout 24-06
-
+	int			key_rotate_left;
+	int			key_rotate_right;
 	double		last_time;
 }	t_data;
 
