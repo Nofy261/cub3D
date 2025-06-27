@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/26 14:48:16 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:29:09 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	free_data(t_data *data)
 		free_array(data->map.file_content);
 	if (data->map.map)
 		free_array(data->map.map);
-	mlx_destroy_display(data->mlx);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
 	free(data->mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/26 01:00:25 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:34:45 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	load_texture(char *line, t_texture *texture, t_data *data)
 
 	file = ft_split(line, ' ');
 	if (file == NULL || file[1] == NULL)
-		exit_error_with_array(data, file, "Invalid textureture path");
+		exit_error_with_array(data, file, "Invalid texture path");
 	texture->image = mlx_xpm_file_to_image(data->mlx, file[1], &texture->width,
 			&texture->height);
 	if (texture->image == NULL)
-		exit_error_with_array(data, file, "Failed to load textureture");
+		exit_error_with_array(data, file, "Failed to load texture");
 	texture->data = mlx_get_data_addr(texture->image, &texture->bpp,
 			&texture->size_line, &texture->endian);
 	free_array(file);

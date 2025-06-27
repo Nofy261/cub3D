@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 08:12:57 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/13 10:46:54 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:47:17 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	validate_rgb_format(char *str, t_data *data)
 			|| (!ft_isdigit(str[i]) && str[i] != ',')
 			|| (str[i] == ',' && is_whitespace(str[i - 1]))
 			|| (str[i] == ',' && is_whitespace(str[i + 1])))
-			exit_error(data, "Invalid color format");
+			exit_error(data, "Invalid color format1");
 		i++;
 	}
 }
@@ -65,7 +65,7 @@ static void	parse_color_line(t_data *data, char *str, int floor_flag)
 		|| file[1] == NULL
 		|| file[2] == NULL
 		|| file[3] != NULL)
-		exit_error_with_array(data, file, "Invalid color format");
+		exit_error_with_array(data, file, "Invalid color format2");
 	parse_rgb_values(file, &r, &g, &b);
 	if (floor_flag)
 		assign_color(data->map.floor_color, r, g, b);
