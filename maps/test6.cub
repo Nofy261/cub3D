@@ -1,0 +1,17 @@
+NO ./dir.cub/no_permission_file.xpm
+SO ./textures/art/art_s.xpm
+WE ./textures/art/art_w.xpm
+EA ./textures/art/art_e.xpm
+
+
+F 254,45,60
+C 225,30,5
+
+
+111111111
+100000001
+110000011
+111N00011
+110000011
+111000001
+111111111
