@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:09:53 by nolecler          #+#    #+#             */
-/*   Updated: 2025/07/02 13:11:48 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:25:25 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define TYPES_H
 
 # include "cub3d.h"
-
-// Uniquement pour vscode mac (c'est galère)
-// #ifndef M_PI
-// #  define M_PI 3.14159265358979323846
-// #endif
 
 # define SPEED 2.0
 

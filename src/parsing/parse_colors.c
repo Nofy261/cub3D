@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 08:12:57 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/27 10:47:17 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:10:47 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,18 @@ static void	validate_rgb_format(char *str, t_data *data)
 	commas = 0;
 	while (str[i])
 	{
-		if (str[i] == ',')
-			commas++;
-		if (commas > 2
-			|| (!ft_isdigit(str[i]) && str[i] != ',')
-			|| (str[i] == ',' && is_whitespace(str[i - 1]))
-			|| (str[i] == ',' && is_whitespace(str[i + 1])))
+		while (is_whitespace(str[i]))
+			i++;
+		while (ft_isdigit(str[i]))
+			i++;
+		while (is_whitespace(str[i]))
+			i++;
+		if (str[i] == '\0')
+			break;
+		if (str[i] != ',')
+			exit_error(data, "Invalid color format1");
+		commas++;
+		if (commas > 2)
 			exit_error(data, "Invalid color format1");
 		i++;
 	}
@@ -40,7 +46,7 @@ static int	parse_rgb_values(char **parts, int *r, int *g, int *b)
 	if (*r < 0 || *r > 255
 		|| *g < 0 || *g > 255
 		|| *b < 0 || *b > 255)
-		exit_error_with_array(NULL, parts, "Color value invalid");
+		return (0);
 	return (1);
 }
 
@@ -66,7 +72,8 @@ static void	parse_color_line(t_data *data, char *str, int floor_flag)
 		|| file[2] == NULL
 		|| file[3] != NULL)
 		exit_error_with_array(data, file, "Invalid color format2");
-	parse_rgb_values(file, &r, &g, &b);
+	if (!parse_rgb_values(file, &r, &g, &b))
+		exit_error_with_array(data, file, "Color value invalid");
 	if (floor_flag)
 		assign_color(data->map.floor_color, r, g, b);
 	else
