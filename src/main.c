@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:01:35 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/27 10:29:48 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:11:51 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,16 @@
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		fd;
 
 	ft_bzero(&data, sizeof(data));
-	fd = parse_args_open_file(argc, argv);
 	init(&data);
+	data.fd = parse_args_open_file(argc, argv);
 	data.mlx = mlx_init();
 	if (data.mlx == NULL)
-	{
-		close(fd);
 		exit_error(&data, "Failed to init MLX");
-	}
-	data.map.file_content = get_file_content(fd);
-	close(fd);
+	data.map.file_content = get_file_content(data.fd);
+	close(data.fd);
+	data.fd = 0;
 	parse_and_load_textures(&data);
 	parse_file_colors(&data);
 	data.map.map = map_start(&data);

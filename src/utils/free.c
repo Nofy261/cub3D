@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 15:10:33 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/27 10:29:09 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:08:17 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ void	free_data(t_data *data)
 {
 	if (!data)
 		return ;
+	if (data->fd)
+	{
+		close(data->fd);
+		data->fd = 0;
+	}
 	free_textures(data);
 	if (data->window)
 	{
