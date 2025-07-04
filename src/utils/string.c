@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 18:57:21 by rraumain          #+#    #+#             */
-/*   Updated: 2025/06/26 00:58:26 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:15:43 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,23 @@ char	*skip_whitespaces(char *str)
 	while (str && is_whitespace(*str))
 		str++;
 	return (str);
+}
+
+int	count_words(const char *s)
+{
+	int	i;
+	int	count ;
+
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		while (s[i] && is_whitespace(s[i]))
+			i++;
+		if (s[i])
+			count++;
+		while (s[i] && !is_whitespace(s[i]))
+			i++;
+	}
+	return (count);	
 }

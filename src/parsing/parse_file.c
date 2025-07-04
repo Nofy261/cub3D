@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/07/04 15:02:35 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:16:02 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static void	count_params(t_data *data)
 		if (i == data->map.map_start_index)
 			break ;
 		line = skip_whitespaces(data->map.file_content[i]);
-		if (ft_strncmp(line, "NO ", 3) == 0)
+		if (ft_strncmp(line, "NO ", 3) == 0 && count_words(line) == 2)
 			data->counter.count_no++;
-		else if (ft_strncmp(line, "SO ", 3) == 0)
+		else if (ft_strncmp(line, "SO ", 3) == 0 && count_words(line) == 2)
 			data->counter.count_so++;
-		else if (ft_strncmp(line, "WE ", 3) == 0)
+		else if (ft_strncmp(line, "WE ", 3) == 0 && count_words(line) == 2)
 			data->counter.count_we++;
-		else if (ft_strncmp(line, "EA ", 3) == 0)
+		else if (ft_strncmp(line, "EA ", 3) == 0 && count_words(line) == 2)
 			data->counter.count_ea++;
 		else if (ft_strncmp(line, "F ", 2) == 0)
 			data->counter.count_f++;
@@ -90,7 +90,7 @@ static void	find_map_start(t_data *data)
 		}
 		if (line[0] != '\0'
 			&& !is_param_line(line))
-			exit_error(data, "Unknown element in file");
+			exit_error(data, "Unknown element in file or invalid map");
 		i++;
 	}
 	exit_error(data, "Map start index not found");

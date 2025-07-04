@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:02:00 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/11 19:42:12 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:15:40 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int		char_in_set(char c, const char *set);
 int		is_whitespace(char c);
 int		ft_strcspn(char *line, char *str);
 char	*skip_whitespaces(char *str);
+int	    count_words(const char *s);
 
 #endif
