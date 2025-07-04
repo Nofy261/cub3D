@@ -28,7 +28,7 @@ static void	validate_rgb_format(char *str, t_data *data)
 		while (is_whitespace(str[i]))
 			i++;
 		if (str[i] == '\0')
-			break;
+			break ;
 		if (str[i] != ',')
 			exit_error(data, "Invalid color format1");
 		commas++;

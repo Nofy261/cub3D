@@ -29,6 +29,6 @@ int		char_in_set(char c, const char *set);
 int		is_whitespace(char c);
 int		ft_strcspn(char *line, char *str);
 char	*skip_whitespaces(char *str);
-int	    count_words(const char *s);
+int		count_words(const char *s);
 
 #endif

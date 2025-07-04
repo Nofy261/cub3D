@@ -79,5 +79,5 @@ int	count_words(const char *s)
 		while (s[i] && !is_whitespace(s[i]))
 			i++;
 	}
-	return (count);	
+	return (count);
 }
