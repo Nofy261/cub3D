@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/27 10:34:45 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:02:35 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ static void	count_params(t_data *data)
 	char	*line;
 
 	i = 0;
-	if (data->map.file_content == NULL
-		|| data->map.file_content[0] == NULL)
+	if (data->map.file_content == NULL || data->map.file_content[0] == NULL)
 		exit_error(data, "Map is empty");
 	while (data->map.file_content[i] != NULL)
 	{
+		if (i == data->map.map_start_index)
+			break ;
 		line = skip_whitespaces(data->map.file_content[i]);
 		if (ft_strncmp(line, "NO ", 3) == 0)
 			data->counter.count_no++;
@@ -100,12 +101,12 @@ void	parse_and_load_textures(t_data *data)
 	int		i;
 	char	*line;
 
+	find_map_start(data);
 	count_params(data);
 	if (data->counter.count_no != 1 || data->counter.count_so != 1
 		|| data->counter.count_we != 1 || data->counter.count_ea != 1
 		|| data->counter.count_f != 1 || data->counter.count_c != 1)
 		exit_error(data, "Invalid number of elements");
-	find_map_start(data);
 	i = 0;
 	while (i < data->map.map_start_index)
 	{
