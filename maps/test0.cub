@@ -1,0 +1,12 @@
+NO ./textures/art/art_n.xpm
+SO ./textures/art/art_n.xpm
+EA ./textures/art/art_n.xpm
+WE ./textures/art/art_n.xpm
+
+F 1, 1, 0
+C 1, 1, 1
+
+11111111
+11111101
+10000N11
+111111

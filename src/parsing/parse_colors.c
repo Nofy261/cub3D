@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 08:12:57 by nolecler          #+#    #+#             */
-/*   Updated: 2025/07/02 16:10:47 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/08 08:25:03 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static void	validate_rgb_format(char *str, t_data *data)
 		if (str[i] == '\0')
 			break ;
 		if (str[i] != ',')
-			exit_error(data, "Invalid color format1");
+			exit_error(data, "Invalid color format");
 		commas++;
 		if (commas > 2)
-			exit_error(data, "Invalid color format1");
+			exit_error(data, "Invalid color format");
 		i++;
 	}
 }
@@ -71,7 +71,7 @@ static void	parse_color_line(t_data *data, char *str, int floor_flag)
 		|| file[1] == NULL
 		|| file[2] == NULL
 		|| file[3] != NULL)
-		exit_error_with_array(data, file, "Invalid color format2");
+		exit_error_with_array(data, file, "Invalid color format");
 	if (!parse_rgb_values(file, &r, &g, &b))
 		exit_error_with_array(data, file, "Color value invalid");
 	if (floor_flag)

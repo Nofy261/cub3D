@@ -1,4 +1,4 @@
-NO ./textures/art/art_n.xpm test
+NO ./textures/art/art_n.xpm ./textures/art/art_n.xpm 
 SO ./textures/art/art_s.xpm
 WE ./textures/art/art_w.xpm
 EA ./textures/art/art_e.xpm

@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 08:03:27 by nolecler          #+#    #+#             */
-/*   Updated: 2025/07/04 16:16:02 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/08 08:58:29 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void	find_map_start(t_data *data)
 	char	*line;
 
 	i = 0;
+	if (!data->map.file_content || !data->map.file_content[i])
+		exit_error(data, "File is empty");
 	while (data->map.file_content[i] != NULL)
 	{
 		line = skip_whitespaces(data->map.file_content[i]);

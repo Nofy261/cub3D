@@ -6,7 +6,7 @@
 /*   By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:48:47 by nolecler          #+#    #+#             */
-/*   Updated: 2025/06/26 11:35:09 by nolecler         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:57:54 by nolecler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,5 @@
 // # define WINDOWS_HEIGHT 720
 # define WINDOWS_WIDTH 1920
 # define WINDOWS_HEIGHT 1080
-// # define WINDOWS_WIDTH 3456
-// # define WINDOWS_HEIGHT 2234
 
 #endif
