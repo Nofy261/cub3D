@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+         #
+#    By: nolecler <nolecler@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 08:55:30 by nolecler          #+#    #+#              #
-#    Updated: 2025/06/26 00:07:14 by rraumain         ###   ########.fr        #
+#    Updated: 2025/07/11 12:27:46 by nolecler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -Iincludes -Iget_next_line -I$(MLXDIR) -Ilibft
-MLXDIR  = mlx
+MLX_REPO = https://github.com/42paris/minilibx-linux.git
+MLXDIR = mlx
 MLX_LIB = -L$(MLXDIR) -lmlx -lXext -lX11 -lm -lz
 LIBFTDIR = libft
 LIBFT_LIB = -L$(LIBFTDIR) -lft
@@ -48,6 +49,13 @@ libft_build:
 	@$(MAKE) -C $(LIBFTDIR)
 
 mlx_build:
+	@mkdir -p $(MLXDIR)
+	@if [ ! -d "$(MLXDIR)/.git" ]; then \
+		echo "Cloning MiniLibX in $(MLXDIR)..."; \
+		git clone $(MLX_REPO) $(MLXDIR); \
+	else \
+		echo "MiniLibX already in $(MLXDIR)."; \
+	fi
 	@$(MAKE) -C $(MLXDIR)
 
 clean:
@@ -59,6 +67,7 @@ fclean: clean
 	rm -f $(NAME)
 	@$(MAKE) -C $(LIBFTDIR) fclean
 	@$(MAKE) -C $(MLXDIR) clean
+	rm -rf $(MLXDIR)
 
 re: fclean all
 
